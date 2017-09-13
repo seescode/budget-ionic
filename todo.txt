@@ -1,0 +1,15 @@
+-Update the categories to be sliders.  By sliding it, it will let you view the 
+individual transactions for each category. 
+  -when you click to view transactions load up a modal from the bottom.
+-Get routing to work so that you can go from page 1 to page 2
+-enable pwa 
+-push this code to a server
+-test that the pwa features work on your phone 
+-Copy over ngrx code
+-Be able to create a new budget and then have it update the list of budgets 
+  -when clicking the + it should open a modal from the bottom. 
+-Be able to add a transaction which will then update the category results 
+
+
+
+
