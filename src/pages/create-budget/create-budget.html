@@ -1,0 +1,21 @@
+<ion-header>
+  <ion-navbar color="primary">
+    <ion-title>
+      <span (click)="cancel()">Cancel</span>
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+<ion-content padding>
+  <ion-list>
+    <ion-item>
+      <ion-input type="text" placeholder="Budget Name"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-input type="text" placeholder="Budget Amount"></ion-input>
+    </ion-item>
+  </ion-list>
+  <ion-fab bottom right>
+      <button ion-fab (click)="addBudget()"><ion-icon name="add"></ion-icon></button>
+    </ion-fab>
+    
+</ion-content>

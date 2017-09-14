@@ -1,3 +1,5 @@
+import { AddTransactionPage } from './../pages/add-transaction/add-transaction';
+import { CreateBudgetPage } from './../pages/create-budget/create-budget';
 import { NgModule, ErrorHandler } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
@@ -11,7 +13,9 @@ import { SplashScreen } from '@ionic-native/splash-screen';
   declarations: [
     MyApp,
     BudgetListPage,
-    BudgetPage
+    BudgetPage,
+    CreateBudgetPage,
+    AddTransactionPage
   ],
   imports: [
     BrowserModule,
@@ -21,7 +25,9 @@ import { SplashScreen } from '@ionic-native/splash-screen';
   entryComponents: [
     MyApp,
     BudgetListPage,
-    BudgetPage
+    BudgetPage,
+    CreateBudgetPage,
+    AddTransactionPage
   ],
   providers: [
     StatusBar,

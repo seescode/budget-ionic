@@ -8,7 +8,7 @@
 
 <ion-content padding>
   <ion-list>
-    <ion-item-sliding>
+    <ion-item-sliding (click)="selectBudget()">
       <ion-item>
         Japan Budget
       </ion-item>
@@ -32,6 +32,6 @@
   </ion-list>
 
   <ion-fab bottom right>
-    <button ion-fab><ion-icon name="add"></ion-icon></button>
+    <button ion-fab (click)="addBudget()"><ion-icon name="add"></ion-icon></button>
   </ion-fab>
 </ion-content>

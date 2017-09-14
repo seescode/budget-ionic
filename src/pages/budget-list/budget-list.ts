@@ -1,5 +1,7 @@
+import { CreateBudgetPage } from './../create-budget/create-budget';
+import { BudgetPage } from './../budget/budget';
 import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import { NavController, ModalController  } from 'ionic-angular';
 
 @Component({
   selector: 'page-budget-list',
@@ -7,8 +9,15 @@ import { NavController } from 'ionic-angular';
 })
 export class BudgetListPage {
 
-  constructor(public navCtrl: NavController) {
-
+  constructor(public navCtrl: NavController, public modalCtrl: ModalController) {
   }
 
+  selectBudget() {
+    this.navCtrl.push(BudgetPage);
+  }
+
+  addBudget() {
+    let modal = this.modalCtrl.create(CreateBudgetPage);
+    modal.present();
+  }
 }

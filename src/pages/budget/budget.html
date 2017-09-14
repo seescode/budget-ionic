@@ -20,9 +20,16 @@
   <ion-slides pager>
     <ion-slide>
       <ion-list>
+          <ion-item-sliding (click)="addTransaction()">              
         <ion-item>
           <ion-icon name="pizza"></ion-icon> Food $500
         </ion-item>
+        <ion-item-options side="right">
+            <button ion-button>
+              <ion-icon name="list"></ion-icon>
+            </button>
+          </ion-item-options>        
+        </ion-item-sliding>
         <ion-item>
           <ion-icon name="pricetag"></ion-icon> Stuff
         </ion-item>

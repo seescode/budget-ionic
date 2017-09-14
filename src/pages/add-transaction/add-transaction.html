@@ -1,0 +1,31 @@
+<ion-header>
+  <ion-navbar color="primary">
+    <ion-title>
+      <span (click)="cancel()">Cancel</span>
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+<ion-content padding>
+
+  <ion-list radio-group>
+    <ion-item>
+      <ion-label>Alcohol</ion-label>
+      <ion-radio></ion-radio>
+    </ion-item>
+    <ion-item>
+      <ion-label>Groceries</ion-label>
+      <ion-radio></ion-radio>
+    </ion-item>
+    <ion-item>
+      <ion-label>Dining out</ion-label>
+      <ion-radio></ion-radio>
+    </ion-item>
+    <ion-item>
+      <ion-input type="text" placeholder="Amount"></ion-input>
+    </ion-item>
+  </ion-list>
+  <ion-fab bottom right>
+    <button ion-fab (click)="addTransaction()"><ion-icon name="add"></ion-icon></button>
+  </ion-fab>
+
+</ion-content>
