@@ -1,3 +1,6 @@
+import { YearGraphPage } from './../pages/year-graph/year-graph';
+import { MonthGraphPage } from './../pages/month-graph/month-graph';
+import { BudgetTabsPage } from './../pages/budget-tabs/budget-tabs';
 import { AddTransactionPage } from './../pages/add-transaction/add-transaction';
 import { CreateBudgetPage } from './../pages/create-budget/create-budget';
 import { NgModule, ErrorHandler } from '@angular/core';
@@ -15,7 +18,10 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     BudgetListPage,
     BudgetPage,
     CreateBudgetPage,
-    AddTransactionPage
+    AddTransactionPage,
+    BudgetTabsPage,
+    MonthGraphPage,
+    YearGraphPage
   ],
   imports: [
     BrowserModule,
@@ -27,7 +33,10 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     BudgetListPage,
     BudgetPage,
     CreateBudgetPage,
-    AddTransactionPage
+    AddTransactionPage,
+    BudgetTabsPage,
+    MonthGraphPage,
+    YearGraphPage
   ],
   providers: [
     StatusBar,

@@ -1,9 +1,6 @@
 
-
--attempt to try and refactor to stop using the slider controls and 
-instead do a tabbed page. 
-
--enable pwa 
+-create manifest file 
+   
 -push this code to a server
 -test that the pwa features work on your phone 
 -Copy over ngrx code

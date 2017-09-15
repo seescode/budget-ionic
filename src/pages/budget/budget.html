@@ -16,46 +16,40 @@
 
   </ion-toolbar>
 </ion-header>
+
 <ion-content padding>
-  <ion-slides pager>
-    <ion-slide>
-      <ion-list>
-          <ion-item-sliding (click)="addTransaction()">              
-        <ion-item>
-          <ion-icon name="pizza"></ion-icon> Food $500
-        </ion-item>
-        <ion-item-options side="right">
-            <button ion-button>
+  <ion-list>
+    <ion-item-sliding (click)="addTransaction()">
+      <ion-item>
+        <ion-icon name="pizza"></ion-icon> Food $500
+      </ion-item>
+      <ion-item-options side="right">
+        <button ion-button>
               <ion-icon name="list"></ion-icon>
             </button>
-          </ion-item-options>        
-        </ion-item-sliding>
-        <ion-item>
-          <ion-icon name="pricetag"></ion-icon> Stuff
-        </ion-item>
-        <ion-item>
-          <ion-icon name="car"></ion-icon> Transportation
-        </ion-item>
-        <ion-item>
-          <ion-icon name="outlet"></ion-icon> Utilities
-        </ion-item>
-        <ion-item>
-          <ion-icon name="home"></ion-icon> Home
-        </ion-item>
-        <ion-item>
-          <ion-icon name="book"></ion-icon> Education
-        </ion-item>
-        <ion-item>
-          <ion-icon name="happy"></ion-icon> Fun
-        </ion-item>
-        <ion-item>
-          <ion-icon name="heart"></ion-icon> Medical
-        </ion-item>
+      </ion-item-options>
+    </ion-item-sliding>
+    <ion-item>
+      <ion-icon name="pricetag"></ion-icon> Stuff
+    </ion-item>
+    <ion-item>
+      <ion-icon name="car"></ion-icon> Transportation
+    </ion-item>
+    <ion-item>
+      <ion-icon name="outlet"></ion-icon> Utilities
+    </ion-item>
+    <ion-item>
+      <ion-icon name="home"></ion-icon> Home
+    </ion-item>
+    <ion-item>
+      <ion-icon name="book"></ion-icon> Education
+    </ion-item>
+    <ion-item>
+      <ion-icon name="happy"></ion-icon> Fun
+    </ion-item>
+    <ion-item>
+      <ion-icon name="heart"></ion-icon> Medical
+    </ion-item>
 
-      </ion-list>
-    </ion-slide>
-    <ion-slide>
-      Def
-    </ion-slide>
-  </ion-slides>
+  </ion-list>
 </ion-content>
