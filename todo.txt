@@ -1,13 +1,37 @@
+-lazy load the routes.  
+  +Make all of the category pages a single module 
+  +Make main page plus add budget a module (technically this is the 
+  main bundle so no need to really lazy load this)
+  -Make the main budget page with the charts a lazy loaded module 
+-Make the category pages be able to pass parameters 
+  https://github.com/seescode/ionic3-firebase-ngrx/blob/master/src/pages/tasks/tasks.ts
 
--create manifest file 
-   
--push this code to a server
--test that the pwa features work on your phone 
+-Figure out how to make ionic push state work with ngrx
+  https://github.com/seescode/ionic3-firebase-ngrx/blob/master/src/pages/tasks/tasks.ts
+  -I don't think this handles time traveling since side effects don't run during 
+  ui updates. 
+
+  
 -Copy over ngrx code
+  -create store folder 
+  -Move effects from a single folder into each of the reducer folders 
+  -Have separate selectors folder.  Right now all selectors are in a single folder. 
+  Modify it so that it's in multiple files.  
+
 -Be able to create a new budget and then have it update the list of budgets 
   -when clicking the + it should open a modal from the bottom. 
 -Be able to add a transaction which will then update the category results 
 
+-Research how to persist your data with:
+  navigator.storage.requestPersistent
 
+-create an offline page
+-create your unique logo 
+-create multiple sizes for you logo and include them in your manifest.json
+-setup remote chrome debugging for your phone. 
+  https://developers.google.com/web/tools/chrome-devtools/remote-debugging/
+
+-make sure web install banner works
+  https://developers.google.com/web/fundamentals/engage-and-retain/app-install-banners/
 
 

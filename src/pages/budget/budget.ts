@@ -1,4 +1,3 @@
-import { AddTransactionPage } from './../add-transaction/add-transaction';
 import { Component } from '@angular/core';
 import { NavController, ModalController } from 'ionic-angular';
 
@@ -13,7 +12,7 @@ export class BudgetPage {
   }
 
   addTransaction() {
-    let modal = this.modalCtrl.create(AddTransactionPage);
+    let modal = this.modalCtrl.create('AddTransactionPage');
     modal.present();    
   }
 

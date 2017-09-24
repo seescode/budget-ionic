@@ -11,7 +11,7 @@ self.toolbox.options.cache = {
   name: 'ionic-cache'
 };
 
-// pre-cache our key assets
+// pre-cache our key assets which represent our app shell
 self.toolbox.precache(
   [
     './build/main.js',
@@ -29,3 +29,17 @@ self.toolbox.router.any('/*', self.toolbox.cacheFirst);
 // for any other requests go to the network, cache,
 // and then only use that cached resource if your user goes offline
 self.toolbox.router.default = self.toolbox.networkFirst;
+
+self.addEventListener('install', function(event) {
+	console.log('[Service Worker] Installing Service Worker ...', event);
+});
+
+self.addEventListener('activate', function(event) {
+	console.log('[Service Worker] Activating Service Worker ...', event);
+	return self.clients.claim();
+});
+
+self.addEventListener('fetch', function(event) {
+  console.log('[Service Worker] Fetching something ...', event);
+  event.respondWith(fetch(event.request));
+});

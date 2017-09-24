@@ -8,16 +8,8 @@
 <ion-content padding>
 
   <ion-list radio-group>
-    <ion-item>
-      <ion-label>Alcohol</ion-label>
-      <ion-radio></ion-radio>
-    </ion-item>
-    <ion-item>
-      <ion-label>Groceries</ion-label>
-      <ion-radio></ion-radio>
-    </ion-item>
-    <ion-item>
-      <ion-label>Dining out</ion-label>
+    <ion-item *ngFor="let category of categories">
+      <ion-label>{{category}}</ion-label>
       <ion-radio></ion-radio>
     </ion-item>
     <ion-item>
