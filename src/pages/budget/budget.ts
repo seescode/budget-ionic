@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
-import { NavController, ModalController } from 'ionic-angular';
+import { NavController, ModalController, IonicPage } from 'ionic-angular';
 
+@IonicPage()
 @Component({
   selector: 'page-budget',
   templateUrl: 'budget.html'

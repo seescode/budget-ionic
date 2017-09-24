@@ -1,7 +1,5 @@
 import { YearGraphPage } from './../year-graph/year-graph';
-import { MonthGraphPage } from './../month-graph/month-graph';
 import { BudgetListPage } from './../budget-list/budget-list';
-import { BudgetPage } from './../budget/budget';
 import { Component } from '@angular/core';
 
 @Component({
@@ -14,8 +12,8 @@ export class BudgetTabsPage {
   tab3: any;
   
   constructor() {
-    this.tab1 = BudgetPage;
-    this.tab2 = MonthGraphPage;
-    this.tab3 = YearGraphPage;    
+    this.tab1 = 'BudgetPage';
+    this.tab2 = 'MonthGraphPage';
+    this.tab3 = 'YearGraphPage';    
   }
 }

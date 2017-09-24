@@ -1,8 +1,3 @@
--lazy load the routes.  
-  +Make all of the category pages a single module 
-  +Make main page plus add budget a module (technically this is the 
-  main bundle so no need to really lazy load this)
-  -Make the main budget page with the charts a lazy loaded module 
 -Make the category pages be able to pass parameters 
   https://github.com/seescode/ionic3-firebase-ngrx/blob/master/src/pages/tasks/tasks.ts
 
