@@ -19,12 +19,13 @@
 
 <ion-content padding>
   <ion-list>
-    <ion-item-sliding *ngFor="let category of categories" (click)="addTransaction(category.name)">
-      <ion-item>
-        <ion-icon [name]="category.icon"></ion-icon> {{category.name}} $500
+    <ion-item-sliding *ngFor="let category of categories">
+      <ion-item (click)="addTransaction(category.name)">
+        <ion-icon [name]="category.icon"></ion-icon> {{category.name}}
+        <ion-badge item-end>$500</ion-badge>
       </ion-item>
       <ion-item-options side="right">
-        <button ion-button>
+        <button ion-button (click)="viewTransactionList(category.name)">
           <ion-icon name="list"></ion-icon>
         </button>
       </ion-item-options>

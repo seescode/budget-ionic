@@ -53,4 +53,9 @@ export class BudgetPage {
     modal.present();    
   }
 
+  viewTransactionList(category: string) {
+    let modal = this.modalCtrl.create('TransactionListPage', { category: category.toLowerCase() });
+    modal.present();        
+  }
+
 }

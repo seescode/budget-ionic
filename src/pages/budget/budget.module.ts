@@ -4,13 +4,13 @@ import { IonicPageModule } from 'ionic-angular';
 
 @NgModule({
   declarations: [
-    BudgetPage
+    BudgetPage  
   ],
   imports: [
-    IonicPageModule.forChild(BudgetPage),
+    IonicPageModule.forChild(BudgetPage) 
   ],
   exports: [
-    BudgetPage    
+    BudgetPage  
   ]
 })
 export class BudgetModule {}

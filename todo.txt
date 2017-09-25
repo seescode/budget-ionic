@@ -1,6 +1,8 @@
-
 -Finish up the UI 
-
+ -on the add blah pages need to add a description.  Currently it 
+ only says cancel.  
+ -show graphs 
+ 
 
 -Figure out how to make ionic push state work with ngrx
   -Have the component that needs to push state do this.
