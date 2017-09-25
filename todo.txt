@@ -1,11 +1,18 @@
--Make the category pages be able to pass parameters 
-  https://github.com/seescode/ionic3-firebase-ngrx/blob/master/src/pages/tasks/tasks.ts
+
+-Finish up the UI 
+
 
 -Figure out how to make ionic push state work with ngrx
-  https://github.com/seescode/ionic3-firebase-ngrx/blob/master/src/pages/tasks/tasks.ts
-  -I don't think this handles time traveling since side effects don't run during 
-  ui updates. 
-
+  -Have the component that needs to push state do this.
+    -click handler
+      -dispatch to update store 
+    -subscribe to store updates 
+      -push the state. 
+    -alternatively see if using the router will solve your issues.
+  -showAddTransaction = null: nothing should fire 
+  -showAddTransaction = true: push addTransactionPage 
+  -showAddTransaction = false: pop page and also dispatch to set 
+    showAddTransaction to be null 
   
 -Copy over ngrx code
   -create store folder 
