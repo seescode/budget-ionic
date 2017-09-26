@@ -1,5 +1,4 @@
 import { CreateBudgetPage } from './../create-budget/create-budget';
-import { BudgetPage } from './../budget/budget';
 import { BudgetTabsPage } from './../budget-tabs/budget-tabs';
 import { Component } from '@angular/core';
 import { NavController, ModalController  } from 'ionic-angular';

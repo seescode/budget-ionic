@@ -6,5 +6,16 @@
   </ion-navbar>
 </ion-header>
 
-<ion-content padding>
+<ion-content>
+    <ngx-charts-bar-vertical
+    [scheme]="colorScheme"
+    [results]="single"
+    [gradient]="gradient"
+    xAxis="true"
+    [legend]="showLegend"
+    showXAxisLabel="true"
+    tooltipDisabled="true"
+    [xAxisLabel]="xAxisLabel"
+    (select)="onSelect($event)">
+  </ngx-charts-bar-vertical>  
 </ion-content>

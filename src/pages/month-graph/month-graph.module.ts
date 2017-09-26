@@ -1,6 +1,7 @@
 import { MonthGraphPage } from './month-graph';
 import { NgModule } from '@angular/core';
 import { IonicPageModule } from 'ionic-angular';
+import {NgxChartsModule} from '@swimlane/ngx-charts';
 
 @NgModule({
   declarations: [
@@ -8,6 +9,7 @@ import { IonicPageModule } from 'ionic-angular';
   ],
   imports: [
     IonicPageModule.forChild(MonthGraphPage),
+    NgxChartsModule    
   ],
   exports: [
     MonthGraphPage    

@@ -1,7 +1,16 @@
+ -show graphs 
+
+
+
 -Finish up the UI 
  -on the add blah pages need to add a description.  Currently it 
  only says cancel.  
- -show graphs 
+ 
+-Copy over ngrx code
+  -create store folder 
+  -Move effects from a single folder into each of the reducer folders 
+  -Have separate selectors folder.  Right now all selectors are in a single folder. 
+  Modify it so that it's in multiple files.  
  
 
 -Figure out how to make ionic push state work with ngrx
@@ -16,11 +25,6 @@
   -showAddTransaction = false: pop page and also dispatch to set 
     showAddTransaction to be null 
   
--Copy over ngrx code
-  -create store folder 
-  -Move effects from a single folder into each of the reducer folders 
-  -Have separate selectors folder.  Right now all selectors are in a single folder. 
-  Modify it so that it's in multiple files.  
 
 -Be able to create a new budget and then have it update the list of budgets 
   -when clicking the + it should open a modal from the bottom. 
