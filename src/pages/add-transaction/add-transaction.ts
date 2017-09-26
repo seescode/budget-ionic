@@ -53,7 +53,7 @@ export class AddTransactionPage {
   categories = [];
 
   constructor(public viewCtrl: ViewController, private navParams: NavParams) {
-    let id = navParams.get('category');
+    let id = this.navParams.get('category');
     
     this.categories = this.categoryMap[id];
   }

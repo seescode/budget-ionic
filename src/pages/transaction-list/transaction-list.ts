@@ -1,6 +1,5 @@
-import { CreateBudgetPage } from './../create-budget/create-budget';
 import { Component } from '@angular/core';
-import { NavController, ModalController, IonicPage } from 'ionic-angular';
+import { IonicPage } from 'ionic-angular';
 
 @IonicPage()
 @Component({
@@ -9,11 +8,9 @@ import { NavController, ModalController, IonicPage } from 'ionic-angular';
 })
 export class TransactionListPage {
 
-  constructor(public navCtrl: NavController, public modalCtrl: ModalController) {
+  constructor() {
   }
 
   deleteTransaction(transactionId) {
-
-
   }
 }

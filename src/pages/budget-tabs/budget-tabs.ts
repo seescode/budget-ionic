@@ -1,5 +1,3 @@
-import { YearGraphPage } from './../year-graph/year-graph';
-import { BudgetListPage } from './../budget-list/budget-list';
 import { Component } from '@angular/core';
 
 @Component({
