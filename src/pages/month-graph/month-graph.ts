@@ -34,7 +34,6 @@ export class MonthGraphPage {
   constructor(public navCtrl: NavController, public modalCtrl: ModalController) {
   }
   
-  onSelect(event) {
-    console.log(event);
+  onSelect() {
   }  
 }

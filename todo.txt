@@ -1,5 +1,6 @@
- -show graphs 
-
+-fix ui bugs 
+  -cancel looking ugly 
+  -on refresh and on back things seem to break.
 
 
 -Finish up the UI 
