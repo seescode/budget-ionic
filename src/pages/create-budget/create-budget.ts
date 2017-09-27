@@ -7,6 +7,9 @@ import { ViewController } from 'ionic-angular';
 })
 export class CreateBudgetPage {
 
+  budgetStartDate;
+  budgetEndDate;
+
   constructor(public viewCtrl: ViewController) {
   }
 

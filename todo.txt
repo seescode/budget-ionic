@@ -1,19 +1,10 @@
--fix ui bugs 
-  -cancel looking ugly 
-  -on refresh and on back things seem to break.
-
-
--Finish up the UI 
- -on the add blah pages need to add a description.  Currently it 
- only says cancel.  
- 
 -Copy over ngrx code
   -create store folder 
   -Move effects from a single folder into each of the reducer folders 
   -Have separate selectors folder.  Right now all selectors are in a single folder. 
   Modify it so that it's in multiple files.  
- 
 
+ 
 -Figure out how to make ionic push state work with ngrx
   -Have the component that needs to push state do this.
     -click handler
@@ -44,3 +35,10 @@
   https://developers.google.com/web/fundamentals/engage-and-retain/app-install-banners/
 
 
+
+-fix ui bugs 
+  -cancel looking ugly 
+  -on refresh and on back things seem to break.
+-Finish up the UI 
+ -on the add blah pages need to add a description.  Currently it 
+ only says cancel.  

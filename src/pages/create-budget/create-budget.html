@@ -13,9 +13,19 @@
     <ion-item>
       <ion-input type="text" placeholder="Budget Amount"></ion-input>
     </ion-item>
+    <ion-item>
+      <ion-label>Budget Start</ion-label>
+      <ion-datetime displayFormat="MMMM YYYY" pickerFormat="MMMM YYYY" [(ngModel)]="budgetStartDate" min="2017" max="2020"></ion-datetime>
+    </ion-item>
+    <ion-item>
+      <ion-label>Budget Finish</ion-label>
+      <ion-datetime displayFormat="MMMM YYYY" pickerFormat="MMMM YYYY" [(ngModel)]="budgetEndDate" min="2017" max="2020"></ion-datetime>
+    </ion-item>
+
+
   </ion-list>
   <ion-fab bottom right>
-      <button ion-fab (click)="addBudget()"><ion-icon name="add"></ion-icon></button>
-    </ion-fab>
-    
+    <button ion-fab (click)="addBudget()"><ion-icon name="add"></ion-icon></button>
+  </ion-fab>
+
 </ion-content>
