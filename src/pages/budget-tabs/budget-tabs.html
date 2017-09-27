@@ -1,5 +1,24 @@
+<ion-header>
+  <ion-navbar color="primary">
+    <ion-title>Japan Budget</ion-title>
+  </ion-navbar>
+  <ion-toolbar>
+    <button ion-button icon-only menuToggle>
+        <ion-icon name="arrow-back"></ion-icon>
+      </button>
+
+    <ion-title>September 2017</ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only>
+          <ion-icon name="arrow-forward"></ion-icon>
+        </button>
+    </ion-buttons>
+
+  </ion-toolbar>
+</ion-header>
+
 <ion-tabs>
   <ion-tab tabIcon="cash" tabTitle="Add" [root]="tab1"></ion-tab>
   <ion-tab tabIcon="podium" tabTitle="Month" [root]="tab2"></ion-tab>
-  <ion-tab tabIcon="podium" tabTitle="Year" [root]="tab3"></ion-tab>  
+  <ion-tab tabIcon="podium" tabTitle="Total" [root]="tab3"></ion-tab>  
 </ion-tabs>

@@ -3,10 +3,10 @@ import { NavController, ModalController, IonicPage } from 'ionic-angular';
 
 @IonicPage()
 @Component({
-  selector: 'year-graph',
-  templateUrl: 'year-graph.html'
+  selector: 'total-graph',
+  templateUrl: 'total-graph.html'
 })
-export class YearGraphPage {
+export class TotalGraphPage {
 
 
   single: any[] = [

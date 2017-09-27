@@ -12,6 +12,6 @@ export class BudgetTabsPage {
   constructor() {
     this.tab1 = 'BudgetPage';
     this.tab2 = 'MonthGraphPage';
-    this.tab3 = 'YearGraphPage';    
+    this.tab3 = 'TotalGraphPage';    
   }
 }

@@ -1,18 +1,18 @@
-import { YearGraphPage } from './year-graph';
+import { TotalGraphPage } from './total-graph';
 import { NgModule } from '@angular/core';
 import { IonicPageModule } from 'ionic-angular';
 import {NgxChartsModule} from '@swimlane/ngx-charts';
 
 @NgModule({
   declarations: [
-    YearGraphPage
+    TotalGraphPage
   ],
   imports: [
-    IonicPageModule.forChild(YearGraphPage),
+    IonicPageModule.forChild(TotalGraphPage),
     NgxChartsModule
   ],
   exports: [
-    YearGraphPage    
+    TotalGraphPage    
   ]
 })
-export class YearGraphModule {}
+export class TotalGraphModule {}
