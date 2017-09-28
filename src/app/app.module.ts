@@ -8,6 +8,7 @@ import { MyApp } from './app.component';
 import { BudgetListPage } from '../pages/budget-list/budget-list';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
+import './app.rxjs-imports';
 
 @NgModule({
   declarations: [

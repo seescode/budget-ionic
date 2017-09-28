@@ -1,8 +1,31 @@
 -Copy over ngrx code
-  -create store folder 
+  +create store folder 
+  +fix easy errors for selectors 
+  -update the effects reducer to return back default data 
+  -fix selectors related the router. 
+  -update the app module to include all necessary ngrx code.
+
+-Get budget list page working 
+  -be able to create budgets 
+  -list budgets 
+  -remove budgets 
+-Get budget page working 
+  -be able to add transactions 
+  -be able to update category counts with latest numbers 
+  -be able to go to differen months
+-Get month and year charts updating 
+-Get transaction list working
+  -be able to delete transactions 
+-Get undo transaction working
+-Get unit testing working
+  -uncomment your store unit tests and make sure they pass 
+
+-refactor ngrx code
   -Move effects from a single folder into each of the reducer folders 
   -Have separate selectors folder.  Right now all selectors are in a single folder. 
   Modify it so that it's in multiple files.  
+-Get environment.ts working 
+  -currently we are always using the dev reducer and not the production reducer. 
 
  
 -Figure out how to make ionic push state work with ngrx
