@@ -1,7 +1,7 @@
-// import { Transaction, Budget, TotalBudgetInfo } from './../models/interfaces';
+import { Transaction, Budget, TotalBudgetInfo, UserSelection } from './../models/interfaces';
 import { AppState } from '../reducers/index';
-// import { createSelector } from 'reselect';
-// import * as moment from 'moment';
+import { createSelector } from 'reselect';
+import * as moment from 'moment';
 
 export const budgetSelector = (state: AppState) => state.budget;
 export const transactionSelector = (state: AppState) => state.transaction;
@@ -10,33 +10,7 @@ export const transactionSelector = (state: AppState) => state.transaction;
 //   return moment([new Date().getFullYear(), new Date().getMonth()]);
 // };
 
-// export const budgetPageRouteSelector = createSelector(routerSelector,
-//   (routeInfo: any) => {
-
-//     const routes = routeInfo.path.split('/');
-
-//     if (routes[1] !== 'budgeting') {
-//       return null;
-//     }
-
-//     const lastSegment = routes[4].split(';');
-//     const month = parseInt(lastSegment[0]);
-
-//     let categoryId = '';
-
-//     if (lastSegment[1] != null) {
-//       categoryId = lastSegment[1].replace('category=', '');
-//     }
-
-//     const val = {
-//       budgetId: routes[2],
-//       year: parseInt(routes[3]),
-//       month: month,
-//       categoryId: categoryId
-//     };
-
-//     return val;
-//   });
+export const selectionSelector = (state: AppState) => state.selection;
 
 // // TODO: delete me
 // export const editCategoryRouteSelector = createSelector(routerSelector,
@@ -52,14 +26,14 @@ export const transactionSelector = (state: AppState) => state.transaction;
 //     return routes[2];
 //   });
 
-// export const categoriesForCurrentBudget = createSelector(budgetPageRouteSelector, categorySelector,
-//   (route, categories) => {
+// export const categoriesForCurrentBudget = createSelector(selectionSelector, categorySelector,
+//   (userSelection, categories) => {
 
-//     if (route === null || route.budgetId == null) {
+//     if (userSelection === null || userSelection.budgetId == null) {
 //       return null;
 //     }
 
-//     return categories.filter(cat => cat.budgetId === route.budgetId)
+//     return categories.filter(cat => cat.budgetId === userSelection.budgetId)
 //       .sort((a, b) => {
 //         if (a.name < b.name) {
 //           return -1;
@@ -71,10 +45,10 @@ export const transactionSelector = (state: AppState) => state.transaction;
 //       });
 //   });
 
-// export const categoriesWithTransactions = createSelector(budgetPageRouteSelector, categoriesForCurrentBudget,
-//   transactionSelector, (route, categories, transactions) => {
+// export const categoriesWithTransactions = createSelector(selectionSelector, categoriesForCurrentBudget,
+//   transactionSelector, (userSelection, categories, transactions) => {
 
-//     if (route === null || route.budgetId == null) {
+//     if (userSelection === null || userSelection.budgetId == null) {
 //       return null;
 //     }
 
@@ -83,8 +57,8 @@ export const transactionSelector = (state: AppState) => state.transaction;
 //         ...cat,
 //         transactions: transactions
 //           .filter(t => t.categoryId === cat.id &&
-//             t.timestamp.getFullYear() === route.year &&
-//             t.timestamp.getMonth() === route.month - 1)
+//             t.timestamp.getFullYear() === userSelection.year &&
+//             t.timestamp.getMonth() === userSelection.month - 1)
 //           .sort((a, b) => {
 //             if (a.timestamp < b.timestamp) {
 //               return -1;
@@ -98,9 +72,9 @@ export const transactionSelector = (state: AppState) => state.transaction;
 //   });
 
 // export const everyCategoryTotalSelector = createSelector(categoriesWithTransactions,
-//   budgetPageRouteSelector, (categoriesWithTrans, route) => {
+//   selectionSelector, (categoriesWithTrans, userSelection) => {
 
-//     if (route === null || route.budgetId == null || categoriesWithTrans === null) {
+//     if (userSelection === null || userSelection.budgetId == null || categoriesWithTrans === null) {
 //       return [];
 //     }
 
@@ -111,40 +85,52 @@ export const transactionSelector = (state: AppState) => state.transaction;
 //           .reduce((prev, next) => {
 //             return prev + next.amount;
 //           }, 0),
-//         transactions: cat.id === route.categoryId ? cat.transactions : [],
-//         selected: cat.id === route.categoryId
+//         transactions: cat.id === userSelection.categoryId ? cat.transactions : [],
+//         selected: cat.id === userSelection.categoryId
 //       }));
 //   });
 
-// export const getSelectedBudget = createSelector(budgetPageRouteSelector,
-//   budgetSelector, (route, budgets) => {
+export const getSelectedBudget = createSelector(selectionSelector,
+  budgetSelector, (userSelection, budgets) => {
 
-//     if (route === null || route.budgetId === null || budgets === null || budgets.length === null) {
-//       return null;
-//     }
+    if (userSelection === null || userSelection.budgetId === null || budgets === null || budgets.length === null) {
+      return null;
+    }
 
-//     return budgets.find(budget => budget.id === route.budgetId);
-//   });
+    return budgets.find(budget => budget.id === userSelection.budgetId);
+  });
 
-// export const getSelectedBudgetName = createSelector(getSelectedBudget,
-//   (budget: Budget) => {
-//     if (budget == null) {
-//       return null;
-//     }
+export const getSelectedBudgetName = createSelector(getSelectedBudget,
+  (budget: Budget) => {
+    if (budget == null) {
+      return null;
+    }
 
-//     return budget.name;
-//   });
+    return budget.name;
+  });
 
-// export const totalBudgetInfoSelector = createSelector(budgetPageRouteSelector,
-//   getSelectedBudget, transactionSelector, (route, selectedBudget, transactions): TotalBudgetInfo => {
+export const getSelectedDate = createSelector(selectionSelector,
+  (selection: UserSelection) => {
+    if (selection == null) {
+      return null;
+    }
 
-//     if (route === null || route.budgetId == null || selectedBudget == null) {
+    const month = String(selection.month);
+
+    return moment(month, 'M').format('MMMM') + ' ' + selection.year;
+  });
+
+
+// export const totalBudgetInfoSelector = createSelector(selectionSelector,
+//   getSelectedBudget, transactionSelector, (userSelection, selectedBudget, transactions): TotalBudgetInfo => {
+
+//     if (userSelection === null || userSelection.budgetId == null || selectedBudget == null) {
 //       return null;
 //     }
 
 //     const totalBudget = selectedBudget.budgetAmount;
 //     const spent = transactions
-//       .filter(t => t.budgetId === route.budgetId)
+//       .filter(t => t.budgetId === userSelection.budgetId)
 //       .reduce((prev, next) => {
 //         return prev + next.amount;
 //       }, 0);
@@ -189,10 +175,10 @@ export const transactionSelector = (state: AppState) => state.transaction;
 // /**
 //  * This calculates the rolling budget amount and the monthly budget amount.
 //  */
-// export const calculatedBudgetAmountSelector = createSelector(budgetPageRouteSelector,
-//   getSelectedBudget, getCurrentMonth, (route, selectedBudget, currentMonth) => {
+// export const calculatedBudgetAmountSelector = createSelector(selectionSelector,
+//   getSelectedBudget, getCurrentMonth, (userSelection, selectedBudget, currentMonth) => {
 
-//     if (route === null || route.budgetId == null || selectedBudget == null) {
+//     if (userSelection === null || userSelection.budgetId == null || selectedBudget == null) {
 //       return null;
 //     }
 
@@ -212,23 +198,23 @@ export const transactionSelector = (state: AppState) => state.transaction;
 //     return {
 //       rollingBudgetAmount: rollingBudgetAmount,
 //       monthlyBudgetAmount: monthlyBudgetAmount,
-//       budgetId: route.budgetId
+//       budgetId: userSelection.budgetId
 //     };
 //   });
 
-// export const monthlyBudgetInfoSelector = createSelector(budgetPageRouteSelector,
-//   getSelectedBudget, transactionSelector, calculatedBudgetAmountSelector, (route, selectedBudget, transactions, budgetAmountInfo) => {
+// export const monthlyBudgetInfoSelector = createSelector(selectionSelector,
+//   getSelectedBudget, transactionSelector, calculatedBudgetAmountSelector, (userSelection, selectedBudget, transactions, budgetAmountInfo) => {
 
-//     if (route === null || route.budgetId == null || selectedBudget == null) {
+//     if (userSelection === null || userSelection.budgetId == null || selectedBudget == null) {
 //       return null;
 //     }
 
 //     const totalBudget = selectedBudget.budgetAmount;
 
 //     const spent = transactions
-//       .filter(t => t.budgetId === route.budgetId &&
-//         t.timestamp.getMonth() === route.month - 1 &&
-//         t.timestamp.getFullYear() === route.year)
+//       .filter(t => t.budgetId === userSelection.budgetId &&
+//         t.timestamp.getMonth() === userSelection.month - 1 &&
+//         t.timestamp.getFullYear() === userSelection.year)
 //       .reduce((prev, next) => {
 //         return prev + next.amount;
 //       }, 0);
@@ -298,7 +284,7 @@ export const transactionSelector = (state: AppState) => state.transaction;
 //   });
 
 
-// export const categoryTransactionsSelector = createSelector(editCategoryRouteSelector,
+// export const categoryTransactionsSelector = createSelector(editCategoryuserSelectionSelector,
 //   transactionSelector, (categoryId, transactions) => {
 
 //     if (categoryId == null || transactions == null) {

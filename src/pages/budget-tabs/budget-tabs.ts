@@ -1,3 +1,7 @@
+import { getSelectedBudgetName, getSelectedDate } from './../../store/selectors/selectors';
+import { Observable } from 'rxjs/Observable';
+import { AppState } from './../../store/reducers/index';
+import { Store } from '@ngrx/store';
 import { Component } from '@angular/core';
 
 @Component({
@@ -5,11 +9,17 @@ import { Component } from '@angular/core';
 })
 export class BudgetTabsPage {
 
-  tab1: any;
-  tab2: any;
-  tab3: any;
+  tab1: string;
+  tab2: string;
+  tab3: string;
+
+  budgetName$: Observable<string>;  
+  selectedDate$: Observable<string>;
   
-  constructor() {
+  constructor(public store: Store<AppState>) {
+    this.budgetName$ = this.store.select(getSelectedBudgetName);
+    this.selectedDate$ = this.store.select(getSelectedDate);
+
     this.tab1 = 'BudgetPage';
     this.tab2 = 'MonthGraphPage';
     this.tab3 = 'TotalGraphPage';    

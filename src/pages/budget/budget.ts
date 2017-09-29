@@ -1,3 +1,6 @@
+import { Observable } from 'rxjs/Observable';
+import { AppState } from './../../store/reducers/index';
+import { Store } from '@ngrx/store';
 import { Component } from '@angular/core';
 import { NavController, ModalController, IonicPage } from 'ionic-angular';
 
@@ -44,8 +47,10 @@ export class BudgetPage {
     }
   ];
 
-  constructor(public navCtrl: NavController, public modalCtrl: ModalController) {
 
+  constructor(public navCtrl: NavController, public modalCtrl: ModalController, 
+    public store: Store<AppState>) {
+    
   }
 
   addTransaction(category: string) {

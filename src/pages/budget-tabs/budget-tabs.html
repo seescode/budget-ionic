@@ -1,13 +1,13 @@
 <ion-header>
   <ion-navbar color="primary">
-    <ion-title>Japan Budget</ion-title>
+    <ion-title>{{budgetName$ | async}}</ion-title>
   </ion-navbar>
   <ion-toolbar>
     <button ion-button icon-only menuToggle>
         <ion-icon name="arrow-back"></ion-icon>
       </button>
 
-    <ion-title>September 2017</ion-title>
+    <ion-title>{{selectedDate$ | async}}</ion-title>
     <ion-buttons end>
       <button ion-button icon-only>
           <ion-icon name="arrow-forward"></ion-icon>

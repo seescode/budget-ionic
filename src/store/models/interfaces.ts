@@ -33,7 +33,7 @@ export interface Loaded {
   loadedBudgetIds: string[];
 }
 
-export interface Selection {
+export interface UserSelection {
   budgetId: string;
   month: number;
   year: number;

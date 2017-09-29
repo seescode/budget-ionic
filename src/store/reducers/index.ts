@@ -1,4 +1,4 @@
-import { Budget, Transaction, Loaded } from './../models/interfaces';
+import { Budget, Transaction, Loaded, UserSelection } from './../models/interfaces';
 import { createSelector } from 'reselect';
 import { ActionReducer } from '@ngrx/store';
 // import * as fromRouter from '@ngrx/router-store';
@@ -52,7 +52,7 @@ import { SelectionReducer } from './selection.reducer';
 export interface AppState {
   budget: Budget[];
   transaction: Transaction[];
-  selection: Selection;
+  selection: UserSelection;
   budgetLoaded: Loaded;
 }
 

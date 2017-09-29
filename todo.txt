@@ -5,9 +5,12 @@
   -add create budget validation so that you can't create stuff when 
   it's bad 
 -Get budget page working 
+  +display budget name on header 
+  +display date from store
+  -be able to go to different months
+
   -be able to add transactions 
   -be able to update category counts with latest numbers 
-  -be able to go to differen months
 -Get month and year charts updating 
 -Get transaction list working
   -be able to delete transactions 
