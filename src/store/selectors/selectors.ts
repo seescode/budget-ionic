@@ -1,10 +1,10 @@
 // import { Transaction, Budget, TotalBudgetInfo } from './../models/interfaces';
-// import { AppState } from '../reducers/index';
+import { AppState } from '../reducers/index';
 // import { createSelector } from 'reselect';
 // import * as moment from 'moment';
 
-// export const budgetSelector = (state: AppState) => state.budget;
-// export const transactionSelector = (state: AppState) => state.transaction;
+export const budgetSelector = (state: AppState) => state.budget;
+export const transactionSelector = (state: AppState) => state.transaction;
 
 // export const getCurrentMonth = () => {
 //   return moment([new Date().getFullYear(), new Date().getMonth()]);

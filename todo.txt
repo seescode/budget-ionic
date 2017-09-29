@@ -1,11 +1,9 @@
 -Get budget list page working 
   +be able to create budgets 
+  +list budgets 
+  +remove budgets 
   -add create budget validation so that you can't create stuff when 
   it's bad 
-  -list budgets 
-  -remove budgets 
--Should I upgrade the code to use ngrx 4?  It might be easier to do it 
-now then after updating all of the code. 
 -Get budget page working 
   -be able to add transactions 
   -be able to update category counts with latest numbers 

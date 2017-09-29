@@ -1,4 +1,6 @@
 //import { categoryTransactionsSelector, budgetSelector, transactionSelector } from './../selectors/selectors';
+
+import { budgetSelector, transactionSelector } from '../selectors/selectors';
 import {
   LOAD_BUDGET, LOAD_BUDGET_COMPLETE, LOAD_BUDGET_DATA, LOAD_BUDGET_DATA_FROM_CACHE,
   LOAD_BUDGET_DATA_COMPLETE, ADD_BUDGET, ADD_BUDGET_COMPLETE, 
@@ -22,24 +24,24 @@ import { defer } from 'rxjs/observable/defer';
 @Injectable()
 export class BudgetEffects {
 
-  // @Effect()
-  // openDB$: Observable<Action> = this.actions$
-  //   .ofType(LOAD_BUDGET)
-  //   .startWith({
-  //     type: LOAD_BUDGET
-  //   })
-  //   .map(toPayload)
-  //   .mergeMap(() => {
-  //     return this.db.open('budget-db')
-  //       .mergeMap(() => {
-  //         return this.db.query('budget', n => true);
-  //       })
-  //       .toArray()
-  //       .map((budgets) => ({
-  //         type: LOAD_BUDGET_COMPLETE,
-  //         payload: budgets
-  //       }));
-  //   });
+  @Effect()
+  openDB$: Observable<Action> = this.actions$
+    .ofType(LOAD_BUDGET)
+    .startWith({
+      type: LOAD_BUDGET
+    })
+    .map(toPayload)
+    .mergeMap(() => {
+      return this.db.open('budget-db')
+        .mergeMap(() => {
+          return this.db.query('budget', n => true);
+        })
+        .toArray()
+        .map((budgets) => ({
+          type: LOAD_BUDGET_COMPLETE,
+          payload: budgets
+        }));
+    });
 
   // @Effect()
   // budgetData$: Observable<Action> = this.actions$
@@ -166,63 +168,37 @@ export class BudgetEffects {
   //       });
   //   });
 
-  // @Effect()
-  // removeBudget$: Observable<Action> = this.actions$
-  //   .ofType(REMOVE_BUDGET)
-  //   .map(toPayload)
-  //   // TODO: must get based on budget id
-  //   .withLatestFrom(this.store.select(budgetSelector),
-  //   this.store.select(categorySelector),
-  //   this.store.select(transactionSelector))
-  //   .mergeMap(([budgetId, budgets, categories, transactions]:
-  //     [string, Budget[], Category[], Transaction[]]) => {
+  @Effect()
+  removeBudget$: Observable<Action> = this.actions$
+    .ofType(REMOVE_BUDGET)
+    .map(toPayload)
+    // TODO: must get based on budget id
+    .withLatestFrom(this.store.select(budgetSelector),
+    this.store.select(transactionSelector))
+    .mergeMap(([budgetId, budgets, transactions]:
+      [string, Budget[], Transaction[]]) => {
 
-  //     const transactionIds = transactions
-  //       .filter(trans => trans.budgetId === budgetId)
-  //       .map(trans => trans.id);
+      const transactionIds = transactions
+        .filter(trans => trans.budgetId === budgetId)
+        .map(trans => trans.id);
 
-  //     const categoryIds = categories
-  //       .filter(cat => cat.budgetId === budgetId)
-  //       .map(cat => cat.id);
+      if (transactionIds.length === 0) {
+        return this.db.executeWrite('budget', 'delete', [budgetId])
+          .mapTo({
+            type: REMOVE_BUDGET_COMPLETE,
+            payload: budgetId
+          });
+      }
 
-  //     if (transactionIds.length > 0 && categoryIds.length === 0) {
-  //       console.log('budgetId', budgetId);
-  //       console.log('transactionIds', transactionIds);
-  //       throw {
-  //         name: 'removeBudget$ side effect failed',
-  //         message: 'We have floating transactionIds not associated with any category.  Our deletes are not properly working.'
-  //       };
-  //     }
-
-  //     if (transactionIds.length === 0 && categoryIds.length === 0) {
-  //       return this.db.executeWrite('budget', 'delete', [budgetId])
-  //         .mapTo({
-  //           type: REMOVE_BUDGET_COMPLETE,
-  //           payload: budgetId
-  //         });
-  //     }
-
-  //     if (transactionIds.length === 0) {
-  //       return Observable.forkJoin(
-  //         this.db.executeWrite('category', 'delete', categoryIds),
-  //         this.db.executeWrite('budget', 'delete', [budgetId])
-  //       )
-  //       .mapTo({
-  //         type: REMOVE_BUDGET_COMPLETE,
-  //         payload: budgetId
-  //       });
-  //     }
-
-  //     return Observable.forkJoin(
-  //       this.db.executeWrite('transaction', 'delete', transactionIds),
-  //       this.db.executeWrite('category', 'delete', categoryIds),
-  //       this.db.executeWrite('budget', 'delete', [budgetId])
-  //     )
-  //     .mapTo({
-  //       type: REMOVE_BUDGET_COMPLETE,
-  //       payload: budgetId
-  //     });
-  //   });
+      return Observable.forkJoin(
+        this.db.executeWrite('transaction', 'delete', transactionIds),
+        this.db.executeWrite('budget', 'delete', [budgetId])
+      )
+      .mapTo({
+        type: REMOVE_BUDGET_COMPLETE,
+        payload: budgetId
+      });
+    });
 
   constructor(private actions$: Actions, private db: Database, private store: Store<AppState>) { }
 }

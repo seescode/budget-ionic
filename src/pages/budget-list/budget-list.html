@@ -8,25 +8,14 @@
 
 <ion-content padding>
   <ion-list>
-    <ion-item-sliding (click)="selectBudget()">
-      <ion-item>
-        Japan Budget
+    <ion-item-sliding *ngFor="let budget of budgetList$ | async">
+      <ion-item (click)="selectBudget(budget)" >
+        {{budget.name}}
       </ion-item>
       <ion-item-options side="right">
-        <button ion-button color="danger">
-          <ion-icon name="trash"></ion-icon>
+        <button ion-button color="danger" (click)="deleteBudget(budget)">
+          <ion-icon name="trash" ></ion-icon>
         </button>
-      </ion-item-options>
-    </ion-item-sliding>
-
-    <ion-item-sliding>
-      <ion-item>
-        US Budget
-      </ion-item>
-      <ion-item-options side="right">
-        <button ion-button color="danger">
-            <ion-icon name="trash"></ion-icon>
-          </button>
       </ion-item-options>
     </ion-item-sliding>
   </ion-list>
