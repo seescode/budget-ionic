@@ -22,6 +22,7 @@ export class BudgetListPage {
   }
 
   selectBudget(budget: Budget) {
+    this.store.dispatch(this.actions.selectBudget(budget.id));
     this.navCtrl.push(BudgetTabsPage);
   }
 

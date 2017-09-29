@@ -20,6 +20,8 @@ export const REMOVE_BUDGET_COMPLETE = 'REMOVE_BUDGET_COMPLETE';
 export const UPDATE_BUDGET = 'UPDATE_BUDGET';
 export const UPDATE_TRANSACTION = 'UPDATE_TRANSACTION';
 
+export const SELECT = 'SELECT';
+
 // Our app has prebuilt categories. Maybe I can just hardcode the values into 
 // the store as the default value.
 // export const ADD_CATEGORY = 'ADD_CATEGORY';

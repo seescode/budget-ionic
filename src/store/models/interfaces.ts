@@ -22,13 +22,20 @@ export interface Budget {
   endDate: Date;
 }
 
-export interface ActiveDate {
-  month: number;
-  year: number;
-  fullMonth?: string;
-}
+// export interface ActiveDate {
+//   month: number;
+//   year: number;
+//   fullMonth?: string;
+// }
 
 export interface Loaded {
   loadedBudgetInfo: boolean;
   loadedBudgetIds: string[];
+}
+
+export interface Selection {
+  budgetId: string;
+  month: number;
+  year: number;
+  categoryId: string;
 }

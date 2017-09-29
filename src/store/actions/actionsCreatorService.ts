@@ -1,8 +1,7 @@
-import { ADD_TRANSACTION, LOAD_BUDGET_DATA, ADD_BUDGET, REMOVE_TRANSACTION, REMOVE_BUDGET, REMOVE_BUDGET_COMPLETE } from './actions';
+import { ADD_TRANSACTION, LOAD_BUDGET_DATA, ADD_BUDGET, REMOVE_TRANSACTION, REMOVE_BUDGET, REMOVE_BUDGET_COMPLETE, SELECT } from './actions';
 import { Transaction, Budget } from './../models/interfaces';
 import { UUID } from 'angular2-uuid';
 import { Injectable } from '@angular/core';
-
 
 @Injectable()
 export class ActionsCreatorService {
@@ -49,6 +48,19 @@ export class ActionsCreatorService {
     return {
       type: LOAD_BUDGET_DATA,
       payload: budgetId
+    };
+  }
+
+
+  selectBudget(budgetId) {
+    return {
+      type: SELECT,
+      payload: {
+        budgetId: budgetId,
+        year: this.getToday().getFullYear(),
+        month: this.getToday().getMonth(),
+        categoryId: null
+      }
     };
   }
 

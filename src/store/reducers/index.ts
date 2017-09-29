@@ -34,6 +34,7 @@ import { storeFreeze } from 'ngrx-store-freeze';
  * More: https://egghead.io/lessons/javascript-redux-implementing-combinereducers-from-scratch
  */
 import { combineReducers } from '@ngrx/store';
+import { SelectionReducer } from './selection.reducer';
 
 
 /**
@@ -51,8 +52,7 @@ import { combineReducers } from '@ngrx/store';
 export interface AppState {
   budget: Budget[];
   transaction: Transaction[];
-  // category: Category[];
-  // router: RouterState;
+  selection: Selection;
   budgetLoaded: Loaded;
 }
 
@@ -66,9 +66,8 @@ export interface AppState {
  */
 const reducers = {
   budget: BudgetReducer,
-  // category: CategoryReducer,
   transaction: TransactionReducer,
-  // router: fromRouter.routerReducer,
+  selection: SelectionReducer,
   budgetLoaded: BudgetLoadedReducer
 };
 
