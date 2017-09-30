@@ -1,6 +1,9 @@
 import { Transaction, Budget, TotalBudgetInfo, UserSelection } from './../models/interfaces';
 import { AppState } from '../reducers/index';
-import { createSelector } from 'reselect';
+
+
+import { createSelector } from '@ngrx/store';
+
 import * as moment from 'moment';
 
 export const budgetSelector = (state: AppState) => state.budget;

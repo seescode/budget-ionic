@@ -7,6 +7,7 @@
 -Get budget page working 
   +display budget name on header 
   +display date from store
+  -switch to use createSelector
   -be able to go to different months
 
   -be able to add transactions 
