@@ -15,7 +15,7 @@ import { EffectsModule } from '@ngrx/effects';
 import { DBModule } from '@ngrx/db';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
-import { reducer } from '../store/reducers';
+import { reducers, metaReducers } from '../store/reducers';
 import { schema } from '../store/db';
 
 
@@ -33,9 +33,9 @@ import { BudgetEffects } from '../store/effects/budget.effects';
     BrowserModule,
     BrowserAnimationsModule,
     IonicModule.forRoot(MyApp),
-    StoreModule.provideStore(reducer),
-    StoreDevtoolsModule.instrumentOnlyWithExtension(),
-    EffectsModule.run(BudgetEffects),
+    StoreModule.forRoot(reducers, { metaReducers }),
+    StoreDevtoolsModule.instrument(),
+    EffectsModule.forRoot([BudgetEffects]),
     DBModule.provideDB(schema)            
   ],
   bootstrap: [IonicApp],

@@ -18,6 +18,9 @@
 -Get unit testing working
   -uncomment your store unit tests and make sure they pass 
 
+-Figure out how to use the discriminating types for ngrx actions.
+
+
 -refactor ngrx code
   -Move effects from a single folder into each of the reducer folders 
   -Have separate selectors folder.  Right now all selectors are in a single folder. 
