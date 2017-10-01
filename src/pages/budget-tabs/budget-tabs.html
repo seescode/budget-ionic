@@ -3,22 +3,20 @@
     <ion-title>{{budgetName$ | async}}</ion-title>
   </ion-navbar>
   <ion-toolbar>
-    <button ion-button icon-only menuToggle>
-        <ion-icon name="arrow-back"></ion-icon>
-      </button>
-
+    <button ion-button icon-only menuToggle (click)="previousMonth()">
+      <ion-icon name="arrow-back"></ion-icon>
+    </button>
     <ion-title>{{selectedDate$ | async}}</ion-title>
     <ion-buttons end>
-      <button ion-button icon-only>
+      <button ion-button icon-only (click)="nextMonth()">
           <ion-icon name="arrow-forward"></ion-icon>
         </button>
     </ion-buttons>
-
   </ion-toolbar>
 </ion-header>
 
 <ion-tabs>
   <ion-tab tabIcon="cash" tabTitle="Add" [root]="tab1"></ion-tab>
   <ion-tab tabIcon="podium" tabTitle="Month" [root]="tab2"></ion-tab>
-  <ion-tab tabIcon="podium" tabTitle="Total" [root]="tab3"></ion-tab>  
+  <ion-tab tabIcon="podium" tabTitle="Total" [root]="tab3"></ion-tab>
 </ion-tabs>

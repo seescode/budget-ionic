@@ -7,8 +7,8 @@
 -Get budget page working 
   +display budget name on header 
   +display date from store
-  -switch to use createSelector
-  -be able to go to different months
+  +switch to use createSelector
+  +be able to go to different months
 
   -be able to add transactions 
   -be able to update category counts with latest numbers 
@@ -67,3 +67,5 @@
 -Finish up the UI 
  -on the add blah pages need to add a description.  Currently it 
  only says cancel.  
+-fix weird ionic bug where the month bar's previous month's styling breaks when I 
+remove the toggleMenu attribute. 

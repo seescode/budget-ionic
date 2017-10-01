@@ -1,6 +1,4 @@
 import { Budget, Transaction, Loaded, UserSelection } from './../models/interfaces';
-import { createSelector } from 'reselect';
-import { ActionReducer } from '@ngrx/store';
 // import * as fromRouter from '@ngrx/router-store';
 // import { environment } from '../../environments/environment';
 import {BudgetReducer } from './budget.reducer';
@@ -16,7 +14,6 @@ import { BudgetLoadedReducer } from './budget-loaded.reducer';
  *
  * More: https://drboolean.gitbooks.io/mostly-adequate-guide/content/ch5.html
  */
-import { compose } from '@ngrx/store';
 
 /**
  * storeFreeze prevents state from being mutated. When mutation occurs, an
@@ -33,7 +30,7 @@ import { storeFreeze } from 'ngrx-store-freeze';
  *
  * More: https://egghead.io/lessons/javascript-redux-implementing-combinereducers-from-scratch
  */
-import { combineReducers, ActionReducerMap, State, MetaReducer } from '@ngrx/store';
+import { ActionReducerMap, MetaReducer } from '@ngrx/store';
 import { SelectionReducer } from './selection.reducer';
 
 

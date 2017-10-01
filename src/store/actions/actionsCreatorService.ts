@@ -1,4 +1,4 @@
-import { ADD_TRANSACTION, LOAD_BUDGET_DATA, ADD_BUDGET, REMOVE_TRANSACTION, REMOVE_BUDGET, REMOVE_BUDGET_COMPLETE, SELECT } from './actions';
+import { ADD_TRANSACTION, LOAD_BUDGET_DATA, ADD_BUDGET, REMOVE_TRANSACTION, REMOVE_BUDGET, REMOVE_BUDGET_COMPLETE, SELECT, PREVIOUS_MONTH, NEXT_MONTH } from './actions';
 import { Transaction, Budget } from './../models/interfaces';
 import { UUID } from 'angular2-uuid';
 import { Injectable } from '@angular/core';
@@ -121,5 +121,17 @@ export class ActionsCreatorService {
       type: ADD_BUDGET,
       payload: newBudget
     };
+  }
+
+  previousMonth() {
+    return {
+      type: PREVIOUS_MONTH
+    }
+  }
+
+  nextMonth() {
+    return {
+      type: NEXT_MONTH
+    }
   }
 }
