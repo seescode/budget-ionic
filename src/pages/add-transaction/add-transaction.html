@@ -7,18 +7,18 @@
   </ion-navbar>
 </ion-header>
 <ion-content padding>
-
-  <ion-list radio-group>
+  <ion-list radio-group [(ngModel)]="subCategory">
     <ion-item *ngFor="let category of categories">
       <ion-label>{{category}}</ion-label>
-      <ion-radio></ion-radio>
+      <ion-radio [value]="category"></ion-radio>
     </ion-item>
+  </ion-list>
+  <ion-list>
     <ion-item>
-      <ion-input type="text" placeholder="Amount"></ion-input>
+      <ion-input type="text" placeholder="Amount" [(ngModel)]="transactionAmount"></ion-input>
     </ion-item>
   </ion-list>
   <ion-fab bottom right>
     <button ion-fab (click)="addTransaction()"><ion-icon name="add"></ion-icon></button>
   </ion-fab>
-
 </ion-content>

@@ -91,23 +91,6 @@ export class BudgetEffects {
       // .catch();
     });
 
-  // @Effect()
-  // category$: Observable<Action> = this.actions$
-  //   .ofType(ADD_CATEGORY)
-  //   .map(toPayload)
-  //   .mergeMap((category: Category) => {
-
-  //     // insert does inserts and updates
-  //     return this.db.insert('category', [category])
-  //       .map((response: any) => ({
-  //         type: ADD_CATEGORY_COMPLETE,
-  //         payload: response
-  //       }));
-
-  //     // TODO handle catches
-  //     // .catch();
-  //   });
-
   @Effect()
   transaction$: Observable<Action> = this.actions$
     .ofType(ADD_TRANSACTION)
@@ -139,33 +122,6 @@ export class BudgetEffects {
 
   //     // TODO handle catches
   //     // .catch();
-  //   });
-
-  // @Effect()
-  // removeCategory$: Observable<Action> = this.actions$
-  //   .ofType(REMOVE_CATEGORY)
-  //   .map(toPayload)
-  //   .withLatestFrom(this.store.select(categoryTransactionsSelector))
-  //   .mergeMap(([categoryId, transactions]: [string, Transaction[]]) => {
-
-  //     const transactionIds = transactions.map(trans => trans.id);
-
-  //     if (transactionIds.length === 0) {
-  //       return this.db.executeWrite('category', 'delete', [categoryId])
-  //         .mapTo({
-  //           type: REMOVE_CATEGORY_COMPLETE,
-  //           payload: categoryId
-  //         });
-  //     }
-
-  //     return Observable.forkJoin(
-  //       this.db.executeWrite('category', 'delete', [categoryId]),
-  //       this.db.executeWrite('transaction', 'delete', transactionIds)
-  //     )
-  //       .mapTo({
-  //         type: REMOVE_CATEGORY_COMPLETE,
-  //         payload: categoryId
-  //       });
   //   });
 
   @Effect()
@@ -204,6 +160,8 @@ export class BudgetEffects {
 }
 
 
+
+// TODO: delete these comments:
 //     db.open('budget');
 
 // insert does inserts and updates

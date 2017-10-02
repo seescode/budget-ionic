@@ -1,7 +1,9 @@
+import { ActionsCreatorService } from './../../store/actions/actionsCreatorService';
+import { Actions } from '@ngrx/effects';
 import { Observable } from 'rxjs/Observable';
 import { AppState } from './../../store/reducers/index';
 import { Store } from '@ngrx/store';
-import { Component } from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
 import { NavController, ModalController, IonicPage } from 'ionic-angular';
 
 @IonicPage()
@@ -9,7 +11,7 @@ import { NavController, ModalController, IonicPage } from 'ionic-angular';
   selector: 'page-budget',
   templateUrl: 'budget.html'
 })
-export class BudgetPage {
+export class BudgetPage implements OnDestroy {
 
   // TODO: Should be coming from the store.
   categories = [
@@ -47,19 +49,29 @@ export class BudgetPage {
     }
   ];
 
+  selectionSubscription;
+  budgetId; 
 
   constructor(public navCtrl: NavController, public modalCtrl: ModalController, 
-    public store: Store<AppState>) {
+    public store: Store<AppState>, public actions: ActionsCreatorService) {
     
+    this.selectionSubscription = this.store.select(s => s.selection).subscribe(selection => {
+      this.budgetId = selection.budgetId;
+    });
+  }
+
+  ngOnDestroy() {
+    this.selectionSubscription.unsubscribe();
   }
 
   addTransaction(category: string) {
-    let modal = this.modalCtrl.create('AddTransactionPage', { category: category.toLowerCase() });
+    this.store.dispatch(this.actions.selectBudget(this.budgetId, category.toLowerCase()));    
+    let modal = this.modalCtrl.create('AddTransactionPage');
     modal.present();    
   }
 
   viewTransactionList(category: string) {
-    let modal = this.modalCtrl.create('TransactionListPage', { category: category.toLowerCase() });
+    let modal = this.modalCtrl.create('TransactionListPage');
     modal.present();        
   }
 

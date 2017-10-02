@@ -51,15 +51,14 @@ export class ActionsCreatorService {
     };
   }
 
-
-  selectBudget(budgetId) {
+  selectBudget(budgetId, categoryId?) {
     return {
       type: SELECT,
       payload: {
         budgetId: budgetId,
         year: this.getToday().getFullYear(),
         month: this.getToday().getMonth(),
-        categoryId: null
+        categoryId: categoryId
       }
     };
   }
