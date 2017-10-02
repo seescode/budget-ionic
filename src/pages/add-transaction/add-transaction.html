@@ -7,8 +7,8 @@
   </ion-navbar>
 </ion-header>
 <ion-content padding>
-  <ion-list radio-group [(ngModel)]="subCategory">
-    <ion-item *ngFor="let category of categories">
+  <ion-list radio-group [(ngModel)]="selectedSubcategory">
+    <ion-item *ngFor="let category of subcategories$ | async">
       <ion-label>{{category}}</ion-label>
       <ion-radio [value]="category"></ion-radio>
     </ion-item>

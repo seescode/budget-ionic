@@ -7,10 +7,7 @@
   +display date from store
   +switch to use createSelector
   +be able to go to different months
-  -be able to add transactions 
-    -make reducer 
-    -dispatch add transaction 
-    -effect to persist it 
+  +be able to add transactions 
   -be able to update category counts with latest numbers 
 -Validation
   -add create budget validation so that you can't create stuff when 

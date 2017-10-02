@@ -32,6 +32,8 @@ import { storeFreeze } from 'ngrx-store-freeze';
  */
 import { ActionReducerMap, MetaReducer } from '@ngrx/store';
 import { SelectionReducer } from './selection.reducer';
+import { CategoryReducer } from './category.reducer';
+import { SubcategoryReducer } from './subcategory.reducer';
 
 
 /**
@@ -51,6 +53,8 @@ export interface AppState {
   transaction: Transaction[];
   selection: UserSelection;
   budgetLoaded: Loaded;
+  category: any[]; //TODO: give this a type
+  subcategory: any; //TODO: give this a type 
 }
 
 
@@ -82,7 +86,9 @@ export const reducers: ActionReducerMap<AppState> = {
   budget: BudgetReducer,
   transaction: TransactionReducer,
   selection: SelectionReducer,
-  budgetLoaded: BudgetLoadedReducer
+  budgetLoaded: BudgetLoadedReducer,
+  category: CategoryReducer,
+  subcategory: SubcategoryReducer
 };
 
 

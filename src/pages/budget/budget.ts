@@ -13,42 +13,7 @@ import { NavController, ModalController, IonicPage } from 'ionic-angular';
 })
 export class BudgetPage implements OnDestroy {
 
-  // TODO: Should be coming from the store.
-  categories = [
-    {
-      icon: 'pizza',
-      name: 'Food'
-    },
-    {
-      icon: 'pricetag',
-      name: 'Stuff'
-    },
-    {
-      icon: 'car',
-      name: 'Transportation'
-    },
-    {
-      icon: 'outlet',
-      name: 'Utilities'
-    },
-    {
-      icon: 'home',
-      name: 'Home'
-    },
-    {
-      icon: 'book',
-      name: 'Education'
-    },
-    {
-      icon: 'happy',
-      name: 'Fun'
-    },
-    {
-      icon: 'heart',
-      name: 'Medical'
-    }
-  ];
-
+  categories$;
   selectionSubscription;
   budgetId; 
 
@@ -58,6 +23,8 @@ export class BudgetPage implements OnDestroy {
     this.selectionSubscription = this.store.select(s => s.selection).subscribe(selection => {
       this.budgetId = selection.budgetId;
     });
+
+    this.categories$ = this.store.select(s => s.category);
   }
 
   ngOnDestroy() {

@@ -8,12 +8,13 @@ import * as moment from 'moment';
 
 export const budgetSelector = (state: AppState) => state.budget;
 export const transactionSelector = (state: AppState) => state.transaction;
+export const selectionSelector = (state: AppState) => state.selection;
+export const subcategorySelector = (state: AppState) => state.subcategory;
 
 // export const getCurrentMonth = () => {
 //   return moment([new Date().getFullYear(), new Date().getMonth()]);
 // };
 
-export const selectionSelector = (state: AppState) => state.selection;
 
 // // TODO: delete me
 // export const editCategoryRouteSelector = createSelector(routerSelector,
@@ -296,3 +297,16 @@ export const getSelectedDate = createSelector(selectionSelector,
 
 //     return transactions.filter(trans => trans.categoryId === categoryId);
 //   });
+
+
+
+export const subcategoriesForSelectedCategorySelector = createSelector(subcategorySelector,
+  selectionSelector, (subcategories, selection) => {
+
+    if (subcategories == null || selection == null) {
+      return [];
+    }
+
+    return subcategories[selection.categoryId];
+  });
+

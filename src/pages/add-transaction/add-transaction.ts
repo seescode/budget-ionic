@@ -1,3 +1,4 @@
+import { subcategoriesForSelectedCategorySelector } from './../../store/selectors/selectors';
 import { Transaction } from './../../store/models/interfaces';
 import { ActionsCreatorService } from './../../store/actions/actionsCreatorService';
 import { AppState } from './../../store/reducers/index';
@@ -13,48 +14,8 @@ import { IonicPage, NavParams } from 'ionic-angular';
 })
 export class AddTransactionPage implements OnDestroy {
 
-  // TODO: move this into the store as a read only data source
-  categoryMap = {
-    'education': [
-      'Classes',
-      'College Savings'
-    ],
-    'food': [
-      'Groceries',
-      'Dining Out',
-      'Alcohol'
-    ],
-    'fun': [
-      'Entertainment',
-      'Gifts'
-    ],
-    'home': [
-      'Rent/Mortgage'
-    ],
-    'medical': [
-      'Medical',
-      'Dental'
-    ],
-    'stuff': [
-      'Supplies',
-      'Clothes',
-      'Software Subscriptions'
-    ],
-    'transportation': [
-      'Public Transportation',
-      'Car',
-      'Plane'
-    ],
-    'utilities': [
-      'Electric',
-      'Gas',
-      'Laundry',
-      'Phone',
-      'Internet'
-    ]
-  };
-
-  subCategory: string;
+  subcategories$;
+  selectedSubcategory: string;
   categories = [];
   transactionAmount: string;
 
@@ -76,7 +37,10 @@ export class AddTransactionPage implements OnDestroy {
     });
 
     // TODO once categoryMap is in the store, make this reactive
-    this.categories = this.categoryMap[this.categoryId];
+    //this.categories = this.categoryMap[this.categoryId];
+
+    this.subcategories$ = this.store.select(subcategoriesForSelectedCategorySelector);
+
   }
 
   ngOnDestroy() {
@@ -89,7 +53,7 @@ export class AddTransactionPage implements OnDestroy {
 
   addTransaction() {
     const transaction: Transaction = {
-      name: this.subCategory.toLowerCase(),
+      name: this.selectedSubcategory.toLowerCase(),
       categoryName: this.categoryId,
       amount: parseFloat(this.transactionAmount)
     };
