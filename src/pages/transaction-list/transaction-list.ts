@@ -1,3 +1,6 @@
+import { ActionsCreatorService } from './../../store/actions/actionsCreatorService';
+import { AppState } from './../../store/reducers/index';
+import { Store } from '@ngrx/store';
 import { Component } from '@angular/core';
 import { IonicPage } from 'ionic-angular';
 
@@ -8,9 +11,13 @@ import { IonicPage } from 'ionic-angular';
 })
 export class TransactionListPage {
 
-  constructor() {
+  transactions$;
+
+  constructor(private store: Store<AppState>, private actions: ActionsCreatorService) {
+    this.transactions$ = this.store.select(s => s.transaction);
   }
 
   deleteTransaction(transactionId) {
+    this.store.dispatch(this.actions.removeTransaction(transactionId));    
   }
 }

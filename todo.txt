@@ -18,9 +18,10 @@
 +Get month updating 
 +Get year chart updating 
 -Persist transactions to storedb 
-
 -Get transaction list working
-  -be able to delete transactions 
+  -write selector that gets based on current month and budget and category 
+-be able to delete transactions 
+  -persist to storedb 
 -Get surplus working 
 -Get unit testing working
 -Get e2e tests working
