@@ -63,6 +63,18 @@ export class ActionsCreatorService {
     };
   }
 
+  select(budgetId, year, month, categoryId?) {
+    return {
+      type: SELECT,
+      payload: {
+        budgetId: budgetId,
+        year: year,
+        month: month,
+        categoryId: categoryId
+      }
+    };
+  }
+  
   // addCategory(categoryName: string, budgetId: string) {
   //   const newCategory: Category = {
   //     name: categoryName,

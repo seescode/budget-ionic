@@ -9,6 +9,7 @@ import * as moment from 'moment';
 export const budgetSelector = (state: AppState) => state.budget;
 export const transactionSelector = (state: AppState) => state.transaction;
 export const selectionSelector = (state: AppState) => state.selection;
+export const categorySelector = (state: AppState) => state.category;
 export const subcategorySelector = (state: AppState) => state.subcategory;
 
 // export const getCurrentMonth = () => {
@@ -30,24 +31,32 @@ export const subcategorySelector = (state: AppState) => state.subcategory;
 //     return routes[2];
 //   });
 
-// export const categoriesForCurrentBudget = createSelector(selectionSelector, categorySelector,
-//   (userSelection, categories) => {
+export const categoriesForCurrentBudget = createSelector(selectionSelector, categorySelector,
+  transactionSelector, (userSelection, categories, transactions) => {
 
-//     if (userSelection === null || userSelection.budgetId == null) {
-//       return null;
-//     }
+    if (userSelection === null || userSelection.budgetId == null || transactions == null) {
+      return null;
+    }
 
-//     return categories.filter(cat => cat.budgetId === userSelection.budgetId)
-//       .sort((a, b) => {
-//         if (a.name < b.name) {
-//           return -1;
-//         } else if (a.name > b.name) {
-//           return 1;
-//         }
+    if (transactions.length > 0) {
+      console.log(userSelection.budgetId);
+      console.log(transactions[0].budgetId);
+      console.log(transactions[0].budgetId === userSelection.budgetId);
+      console.log(transactions[0].budgetId == userSelection.budgetId);
+    }
 
-//         return 0;
-//       });
-//   });
+    return categories
+      .map(cat => ({
+        icon: cat.icon,
+        name: cat.name,
+        amount: transactions
+          .filter(t => t.budgetId === userSelection.budgetId && 
+            t.categoryName === cat.name.toLowerCase() &&
+            t.timestamp.getFullYear() === userSelection.year &&
+            t.timestamp.getMonth() === userSelection.month - 1)
+          .reduce((prev, next) => { return prev + next.amount; }, 0)
+      }));
+  });
 
 // export const categoriesWithTransactions = createSelector(selectionSelector, categoriesForCurrentBudget,
 //   transactionSelector, (userSelection, categories, transactions) => {

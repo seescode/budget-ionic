@@ -5,7 +5,7 @@
     <ion-item-sliding *ngFor="let category of categories$ | async">
       <ion-item (click)="addTransaction(category.name)">
         <ion-icon [name]="category.icon"></ion-icon> {{category.name}}
-        <ion-badge item-end>$500</ion-badge>
+        <ion-badge item-end>{{category.amount | currency:'USD':true:'1.2-2'}}</ion-badge>
       </ion-item>
       <ion-item-options side="right">
         <button ion-button (click)="viewTransactionList(category.name)">

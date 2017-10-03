@@ -1,3 +1,4 @@
+import { categoriesForCurrentBudget } from './../../store/selectors/selectors';
 import { ActionsCreatorService } from './../../store/actions/actionsCreatorService';
 import { Actions } from '@ngrx/effects';
 import { Observable } from 'rxjs/Observable';
@@ -16,15 +17,19 @@ export class BudgetPage implements OnDestroy {
   categories$;
   selectionSubscription;
   budgetId; 
+  year;
+  month;
 
   constructor(public navCtrl: NavController, public modalCtrl: ModalController, 
     public store: Store<AppState>, public actions: ActionsCreatorService) {
     
     this.selectionSubscription = this.store.select(s => s.selection).subscribe(selection => {
       this.budgetId = selection.budgetId;
+      this.year = selection.year;
+      this.month = selection.month;
     });
 
-    this.categories$ = this.store.select(s => s.category);
+    this.categories$ = this.store.select(categoriesForCurrentBudget);
   }
 
   ngOnDestroy() {
@@ -32,7 +37,7 @@ export class BudgetPage implements OnDestroy {
   }
 
   addTransaction(category: string) {
-    this.store.dispatch(this.actions.selectBudget(this.budgetId, category.toLowerCase()));    
+    this.store.dispatch(this.actions.select(this.budgetId, this.year, this.month, category.toLowerCase()));    
     let modal = this.modalCtrl.create('AddTransactionPage');
     modal.present();    
   }

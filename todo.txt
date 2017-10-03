@@ -8,7 +8,7 @@
   +switch to use createSelector
   +be able to go to different months
   +be able to add transactions 
-  -be able to update category counts with latest numbers 
+  +be able to update category counts with latest numbers 
 -Validation
   -add create budget validation so that you can't create stuff when 
   it's bad 
