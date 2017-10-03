@@ -12,9 +12,9 @@ export const selectionSelector = (state: AppState) => state.selection;
 export const categorySelector = (state: AppState) => state.category;
 export const subcategorySelector = (state: AppState) => state.subcategory;
 
-// export const getCurrentMonth = () => {
-//   return moment([new Date().getFullYear(), new Date().getMonth()]);
-// };
+export const getCurrentMonth = () => {
+  return moment([new Date().getFullYear(), new Date().getMonth()]);
+};
 
 
 // // TODO: delete me
@@ -38,25 +38,21 @@ export const categoriesForCurrentBudget = createSelector(selectionSelector, cate
       return null;
     }
 
-    if (transactions.length > 0) {
-      console.log(userSelection.budgetId);
-      console.log(transactions[0].budgetId);
-      console.log(transactions[0].budgetId === userSelection.budgetId);
-      console.log(transactions[0].budgetId == userSelection.budgetId);
-    }
-
     return categories
       .map(cat => ({
         icon: cat.icon,
         name: cat.name,
         amount: transactions
-          .filter(t => t.budgetId === userSelection.budgetId && 
+          .filter(t => t.budgetId === userSelection.budgetId &&
             t.categoryName === cat.name.toLowerCase() &&
             t.timestamp.getFullYear() === userSelection.year &&
             t.timestamp.getMonth() === userSelection.month - 1)
           .reduce((prev, next) => { return prev + next.amount; }, 0)
       }));
   });
+
+
+
 
 // export const categoriesWithTransactions = createSelector(selectionSelector, categoriesForCurrentBudget,
 //   transactionSelector, (userSelection, categories, transactions) => {
@@ -158,62 +154,62 @@ export const getSelectedDate = createSelector(selectionSelector,
 //     };
 //   });
 
-// /**
-//  * This determines from the current month how much total budget
-//  * we have up to this point.  For example let's say we have a yearly
-//  * budget of $1200 for the year 2017.  It's currently June 2017 so the
-//  * calculatedBudgetAmountSelector would return $600.  For July 2017 it
-//  * would return $700.  This amount increases as the current date gets
-//  * closer to the budget end date.
-//  * @param {number} monthlyBudgetAmount
-//  * @param {number} totalbudgetAmount
-//  * @param {number} totalNumberOfMonthsSinceStartDate
-//  * @returns
-//  */
-// function calculateRollingBudget(monthlyBudgetAmount: number, totalbudgetAmount: number,
-//   totalNumberOfMonthsSinceStartDate: number) {
-//   let rollingBudgetAmount = monthlyBudgetAmount * totalNumberOfMonthsSinceStartDate;
+/**
+ * This determines from the current month how much total budget
+ * we have up to this point.  For example let's say we have a yearly
+ * budget of $1200 for the year 2017.  It's currently June 2017 so the
+ * calculatedBudgetAmountSelector would return $600.  For July 2017 it
+ * would return $700.  This amount increases as the current date gets
+ * closer to the budget end date.
+ * @param {number} monthlyBudgetAmount
+ * @param {number} totalbudgetAmount
+ * @param {number} totalNumberOfMonthsSinceStartDate
+ * @returns
+ */
+function calculateRollingBudget(monthlyBudgetAmount: number, totalbudgetAmount: number,
+  totalNumberOfMonthsSinceStartDate: number) {
+  let rollingBudgetAmount = monthlyBudgetAmount * totalNumberOfMonthsSinceStartDate;
 
-//   if (rollingBudgetAmount <= 0) {
-//     rollingBudgetAmount = 0;
-//   }
+  if (rollingBudgetAmount <= 0) {
+    rollingBudgetAmount = 0;
+  }
 
-//   if (rollingBudgetAmount > totalbudgetAmount) {
-//     rollingBudgetAmount = totalbudgetAmount;
-//   }
+  if (rollingBudgetAmount > totalbudgetAmount) {
+    rollingBudgetAmount = totalbudgetAmount;
+  }
 
-//   return rollingBudgetAmount;
-// }
+  return rollingBudgetAmount;
+}
 
-// /**
-//  * This calculates the rolling budget amount and the monthly budget amount.
-//  */
-// export const calculatedBudgetAmountSelector = createSelector(selectionSelector,
-//   getSelectedBudget, getCurrentMonth, (userSelection, selectedBudget, currentMonth) => {
+/**
+ * This calculates the rolling budget amount and the monthly budget amount.
+ */
+export const calculatedBudgetAmountSelector = createSelector(selectionSelector,
+  getSelectedBudget, getCurrentMonth, (userSelection, selectedBudget, currentMonth) => {
 
-//     if (userSelection === null || userSelection.budgetId == null || selectedBudget == null) {
-//       return null;
-//     }
+    if (userSelection === null || userSelection.budgetId == null || selectedBudget == null) {
+      return null;
+    }
 
-//     const startMonth = moment([selectedBudget.startDate.getFullYear(), selectedBudget.startDate.getMonth()]);
-//     const endMonth = moment([selectedBudget.endDate.getFullYear(), selectedBudget.endDate.getMonth()]);
+    const startMonth = moment([selectedBudget.startDate.getFullYear(), selectedBudget.startDate.getMonth()]);
+    const endMonth = moment([selectedBudget.endDate.getFullYear(), selectedBudget.endDate.getMonth()]);
 
-//     // Say you have a budget of 1400 and a total of 14 months.  The result would be a monthlyBudgetAmount of 100
-//     const monthlyBudgetAmount = selectedBudget.budgetAmount / (endMonth.diff(startMonth, 'months') + 1);
+    // Say you have a budget of 1400 and a total of 14 months.  The result would be a monthlyBudgetAmount of 100
+    const monthlyBudgetAmount = selectedBudget.budgetAmount / (endMonth.diff(startMonth, 'months') + 1);
 
-//     // Say the budget started on January 2017 and this month is February 2017.  The result of
-//     // totalNumberOfMonthsSinceStartDate would be 2 months.
-//     const totalNumberOfMonthsSinceStartDate = currentMonth.diff(startMonth, 'months') + 1;
+    // Say the budget started on January 2017 and this month is February 2017.  The result of
+    // totalNumberOfMonthsSinceStartDate would be 2 months.
+    const totalNumberOfMonthsSinceStartDate = currentMonth.diff(startMonth, 'months') + 1;
 
-//     const rollingBudgetAmount = calculateRollingBudget(monthlyBudgetAmount, selectedBudget.budgetAmount,
-//       totalNumberOfMonthsSinceStartDate);
+    const rollingBudgetAmount = calculateRollingBudget(monthlyBudgetAmount, selectedBudget.budgetAmount,
+      totalNumberOfMonthsSinceStartDate);
 
-//     return {
-//       rollingBudgetAmount: rollingBudgetAmount,
-//       monthlyBudgetAmount: monthlyBudgetAmount,
-//       budgetId: userSelection.budgetId
-//     };
-//   });
+    return {
+      rollingBudgetAmount: rollingBudgetAmount,
+      monthlyBudgetAmount: monthlyBudgetAmount,
+      budgetId: userSelection.budgetId
+    };
+  });
 
 // export const monthlyBudgetInfoSelector = createSelector(selectionSelector,
 //   getSelectedBudget, transactionSelector, calculatedBudgetAmountSelector, (userSelection, selectedBudget, transactions, budgetAmountInfo) => {
@@ -319,3 +315,84 @@ export const subcategoriesForSelectedCategorySelector = createSelector(subcatego
     return subcategories[selection.categoryId];
   });
 
+
+
+export const getMonthGraph = createSelector(categoriesForCurrentBudget, calculatedBudgetAmountSelector,
+  (categories, calculatedBudgetAmount) => {
+
+    if (categories == null || calculatedBudgetAmount == null) {
+      return [
+        {
+          name: 'Spent',
+          value: 0
+        },
+        {
+          name: 'Remaining',
+          value: 0
+        }
+      ];
+    }
+
+    const spent = categories.reduce((prev, next) => { return prev + next.amount; }, 0);
+    let remaining = calculatedBudgetAmount.monthlyBudgetAmount - spent;
+
+    if (remaining < 0) {
+      remaining = 0;
+    }
+
+    return [
+      {
+        name: 'Spent: $' + spent,
+        value: spent
+      },
+      {
+        name: 'Remaining: $' + remaining,
+        value: remaining
+      }
+    ]
+  });
+
+
+export const getTotalGraph = createSelector(selectionSelector, getSelectedBudget,
+  transactionSelector, (userSelection, selectedBudget, transactions) => {
+
+    if (userSelection === null || userSelection.budgetId == null || transactions == null ||
+      selectedBudget == null) {
+      return [
+        {
+          name: 'Spent',
+          value: 0
+        },
+        {
+          name: 'Remaining',
+          value: 0
+        },
+        {
+          name: 'Surplus',
+          value: 0
+        }      
+      ];
+    }
+
+    const spent = transactions.reduce((prev, next) => { return prev + next.amount; }, 0);
+    let remaining = selectedBudget.budgetAmount - spent;
+
+    if (remaining < 0) {
+      remaining = 0;
+    }
+
+    return [
+      {
+        name: 'Spent: $' + spent,
+        value: spent
+      },
+      {
+        name: 'Remaining: $' + remaining,
+        value: remaining
+      },
+      {
+        name: 'Surplus: $' + 20,
+        value: 20
+      }      
+    ]
+  });

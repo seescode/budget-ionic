@@ -1,3 +1,6 @@
+import { getMonthGraph } from './../../store/selectors/selectors';
+import { AppState } from './../../store/reducers/index';
+import { Store } from '@ngrx/store';
 import { Component } from '@angular/core';
 import { NavController, ModalController, IonicPage } from 'ionic-angular';
 
@@ -9,29 +12,31 @@ import { NavController, ModalController, IonicPage } from 'ionic-angular';
 export class MonthGraphPage {
 
 
-  single: any[] = [
-    {
-      "name": "Spent: $1102.05",
-      "value": 1102.05
-    },
-    {
-      "name": "Remaining: $2000.50",
-      "value": 2000.50
-    }
-  ];
-  multi: any[];
+  // single: any[] = [
+  //   {
+  //     "name": "Spent: $1102.05",
+  //     "value": 1102.05
+  //   },
+  //   {
+  //     "name": "Remaining: $2000.50",
+  //     "value": 2000.50
+  //   }
+  // ];
 
   // options
-  showXAxis = true;
-  gradient = false;
-  xAxisLabel = '';
+  //showXAxis = true;
+  //gradient = false;
+  //xAxisLabel = '';
  
-  showLegend = false;
+  //showLegend = false;
   colorScheme = {
     domain: ['#a8385d', '#a27ea8']
   };
 
-  constructor(public navCtrl: NavController, public modalCtrl: ModalController) {
+  data$;
+
+  constructor(public store: Store<AppState>) {
+    this.data$ = store.select(getMonthGraph)
   }
   
   onSelect() {

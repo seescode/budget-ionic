@@ -2,13 +2,11 @@
 <ion-content>
   <ngx-charts-bar-vertical
   [scheme]="colorScheme"
-  [results]="single"
-  [gradient]="gradient"
+  [results]="data$ | async"
   xAxis="true"
-  [legend]="showLegend"
   showXAxisLabel="true"
   tooltipDisabled="true"
-  [xAxisLabel]="xAxisLabel"
+  xAxisLabel=""
   (select)="onSelect($event)">
 </ngx-charts-bar-vertical>  
 </ion-content>

@@ -14,14 +14,24 @@
   it's bad 
   -add transaction validation so that you can't create stuff when 
   it's bad 
--Get month and year charts updating 
+  -prevent adding numbers that are 3+ decimal places
++Get month updating 
++Get year chart updating 
+-Persist transactions to storedb 
+
 -Get transaction list working
   -be able to delete transactions 
--Get undo transaction working
+-Get surplus working 
 -Get unit testing working
+-Get e2e tests working
+-test in different browsers
+
+
+-Get undo transaction working
   -uncomment your store unit tests and make sure they pass 
 
 -Figure out how to use the discriminating types for ngrx actions.
+
 
 
 -refactor ngrx code
