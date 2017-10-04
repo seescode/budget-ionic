@@ -3,7 +3,7 @@
 import { budgetSelector, transactionSelector } from '../selectors/selectors';
 import {
   LOAD_BUDGET, LOAD_BUDGET_COMPLETE, LOAD_BUDGET_DATA, LOAD_BUDGET_DATA_FROM_CACHE,
-  LOAD_BUDGET_DATA_COMPLETE, ADD_BUDGET, ADD_BUDGET_COMPLETE, 
+  LOAD_BUDGET_DATA_COMPLETE, ADD_BUDGET, ADD_BUDGET_COMPLETE,
   ADD_TRANSACTION_COMPLETE, ADD_TRANSACTION, REMOVE_TRANSACTION_COMPLETE,
   REMOVE_TRANSACTION, REMOVE_BUDGET, REMOVE_BUDGET_COMPLETE
 } from './../actions/actions';
@@ -43,36 +43,31 @@ export class BudgetEffects {
         }));
     });
 
-  // @Effect()
-  // budgetData$: Observable<Action> = this.actions$
-  //   .ofType(LOAD_BUDGET_DATA)
-  //   .map(toPayload)
-  //   .withLatestFrom(this.store.select(s => s.budgetLoaded))
-  //   .mergeMap(([budgetId, budgetLoaded]: [string, Loaded]) => {
+  @Effect()
+  budgetData$: Observable<Action> = this.actions$
+    .ofType(LOAD_BUDGET_DATA)
+    .map(toPayload)
+    .withLatestFrom(this.store.select(s => s.budgetLoaded))
+    .mergeMap(([budgetId, budgetLoaded]: [string, Loaded]) => {
 
-  //     if (budgetLoaded.loadedBudgetIds.find(bId => bId === budgetId) != null) {
-  //       return Observable.from([{
-  //         type: LOAD_BUDGET_DATA_FROM_CACHE
-  //       }]);
-  //     }
+      if (budgetLoaded.loadedBudgetIds.find(bId => bId === budgetId) != null) {
+        return Observable.from([{
+          type: LOAD_BUDGET_DATA_FROM_CACHE
+        }]);
+      }
 
-  //     return this.db.query('category', n => n.budgetId === budgetId)
-  //       .toArray()
-  //       .mergeMap((categories: Category[]) => {
-  //         return this.db.query('transaction', n => n.budgetId === budgetId)
-  //           .toArray()
-  //           .map((transactions: Transaction[]) => ({
-  //             type: LOAD_BUDGET_DATA_COMPLETE,
-  //             payload: {
-  //               budgetId: budgetId,
-  //               categories: categories,
-  //               transactions: transactions
-  //             }
-  //           }));
-  //       });
-  //   });
-  // TODO handle catches
-  // .catch();
+      return this.db.query('transaction', n => n.budgetId === budgetId)
+        .toArray()
+        .map((transactions: Transaction[]) => ({
+          type: LOAD_BUDGET_DATA_COMPLETE,
+          payload: {
+            budgetId: budgetId,
+            transactions: transactions
+          }
+        }));
+    });
+  //TODO handle catches
+  //.catch();
 
   @Effect()
   budget$: Observable<Action> = this.actions$
@@ -150,10 +145,10 @@ export class BudgetEffects {
         this.db.executeWrite('transaction', 'delete', transactionIds),
         this.db.executeWrite('budget', 'delete', [budgetId])
       )
-      .mapTo({
-        type: REMOVE_BUDGET_COMPLETE,
-        payload: budgetId
-      });
+        .mapTo({
+          type: REMOVE_BUDGET_COMPLETE,
+          payload: budgetId
+        });
     });
 
   constructor(private actions$: Actions, private db: Database, private store: Store<AppState>) { }

@@ -17,9 +17,11 @@
   -prevent adding numbers that are 3+ decimal places
 +Get month updating 
 +Get year chart updating 
--Persist transactions to storedb 
++Persist transactions to storedb 
++load data from storedb 
 -Get transaction list working
   -write selector that gets based on current month and budget and category 
+-Add back button for transaction list page 
 -be able to delete transactions 
   -persist to storedb 
 -Get surplus working 
