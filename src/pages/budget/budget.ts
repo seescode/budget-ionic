@@ -43,6 +43,7 @@ export class BudgetPage implements OnDestroy {
   }
 
   viewTransactionList(category: string) {
+    this.store.dispatch(this.actions.select(this.budgetId, this.year, this.month, category.toLowerCase()));
     let modal = this.modalCtrl.create('TransactionListPage');
     modal.present();        
   }

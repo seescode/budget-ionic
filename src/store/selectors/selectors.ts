@@ -293,15 +293,19 @@ export const calculatedBudgetAmountSelector = createSelector(selectionSelector,
 //   });
 
 
-// export const categoryTransactionsSelector = createSelector(editCategoryuserSelectionSelector,
-//   transactionSelector, (categoryId, transactions) => {
+export const categoryTransactionsSelector = createSelector(selectionSelector,
+  transactionSelector, (selection, transactions) => {
 
-//     if (categoryId == null || transactions == null) {
-//       return [];
-//     }
+    if (selection == null || transactions == null) {
+      return [];
+    }
 
-//     return transactions.filter(trans => trans.categoryId === categoryId);
-//   });
+    return transactions.filter(trans => trans.categoryName === selection.categoryId &&
+      trans.timestamp.getFullYear() === selection.year &&
+      trans.timestamp.getMonth() === selection.month - 1 &&
+      trans.budgetId === selection.budgetId
+    );
+  });
 
 
 
