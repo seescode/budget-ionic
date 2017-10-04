@@ -28,8 +28,9 @@ export class BudgetListPage {
   }
 
   addBudget() {
-    let modal = this.modalCtrl.create(CreateBudgetPage);
-    modal.present();
+    //let modal = this.modalCtrl.create(CreateBudgetPage);
+    //modal.present();
+    this.navCtrl.push(CreateBudgetPage);    
   }
 
   deleteBudget(budget: Budget) {

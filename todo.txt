@@ -19,15 +19,23 @@
 +Get year chart updating 
 +Persist transactions to storedb 
 +load data from storedb 
--Get transaction list working
++Get transaction list working
   -write selector that gets based on current month and budget and category 
--Add back button for transaction list page 
 -be able to delete transactions 
-  -persist to storedb 
+  -persist to storedb
+   
+
+-Convert UI to use the slides instead of tabs. 
+
+-Add back button for transaction list page 
 -Get surplus working 
 -Get unit testing working
 -Get e2e tests working
 -test in different browsers
+-can you make it so that if you hit refresh it will redirect you back to the 
+main page?  You could probably do this with ngrx.  If user hits the main page 
+then set okay to true.  If someone goes to some other url have it send you 
+back to main page using a route guard.
 
 
 -Get undo transaction working

@@ -2,7 +2,7 @@ import { ActionsCreatorService } from './../../store/actions/actionsCreatorServi
 import { AppState } from './../../store/reducers/index';
 import { Store } from '@ngrx/store';
 import { Component } from '@angular/core';
-import { ViewController } from 'ionic-angular';
+import { ViewController, NavController } from 'ionic-angular';
 import * as moment from 'moment';
 
 @Component({
@@ -16,12 +16,8 @@ export class CreateBudgetPage {
   budgetStartDate;
   budgetEndDate;
 
-  constructor(public viewCtrl: ViewController, public store: Store<AppState>,
+  constructor(public navCtrl: NavController, public store: Store<AppState>,
     public actions: ActionsCreatorService) {
-  }
-
-  cancel() {
-    this.viewCtrl.dismiss();
   }
 
   addBudget() {
@@ -32,7 +28,7 @@ export class CreateBudgetPage {
     this.store.dispatch(this.actions.addBudget(this.budgetName, '',
       parseFloat(this.budgetAmount), startDate, endDate));
 
-    this.viewCtrl.dismiss();    
+    this.navCtrl.pop();
   }
 
   // validateRequiredData(budgetName: string, details: string, budgetAmount: string, budgetStartDate: string, budgetEndDate: string) {

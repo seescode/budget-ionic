@@ -15,7 +15,7 @@
         <ion-badge item-end>{{trans.amount | currency:'USD':true:'1.2-2'}}</ion-badge>
       </ion-item>
       <ion-item-options side="right">
-        <button ion-button color="danger" (click)="deleteTransaction(trans.id)">
+        <button ion-button color="danger" (click)="deleteTransaction(trans)">
           <ion-icon name="trash"></ion-icon>
         </button>
       </ion-item-options>

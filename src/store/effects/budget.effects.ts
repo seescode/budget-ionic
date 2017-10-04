@@ -103,21 +103,21 @@ export class BudgetEffects {
       // .catch();
     });
 
-  // @Effect()
-  // removeTransaction$: Observable<Action> = this.actions$
-  //   .ofType(REMOVE_TRANSACTION)
-  //   .map(toPayload)
-  //   .mergeMap((transaction: Transaction) => {
+  @Effect()
+  removeTransaction$: Observable<Action> = this.actions$
+    .ofType(REMOVE_TRANSACTION)
+    .map(toPayload)
+    .mergeMap((transaction: Transaction) => {
 
-  //     return this.db.executeWrite('transaction', 'delete', [transaction.id])
-  //       .map((response: any) => ({
-  //         type: REMOVE_TRANSACTION_COMPLETE,
-  //         payload: transaction
-  //       }));
+      return this.db.executeWrite('transaction', 'delete', [transaction.id])
+        .map((response: any) => ({
+          type: REMOVE_TRANSACTION_COMPLETE,
+          payload: transaction
+        }));
 
-  //     // TODO handle catches
-  //     // .catch();
-  //   });
+      // TODO handle catches
+      // .catch();
+    });
 
   @Effect()
   removeBudget$: Observable<Action> = this.actions$

@@ -18,7 +18,7 @@ export class TransactionListPage {
     this.transactions$ = this.store.select(categoryTransactionsSelector);
   }
 
-  deleteTransaction(transactionId) {
-    this.store.dispatch(this.actions.removeTransaction(transactionId));    
+  deleteTransaction(transaction) {
+    this.store.dispatch(this.actions.removeTransaction(transaction));    
   }
 }

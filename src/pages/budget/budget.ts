@@ -20,7 +20,7 @@ export class BudgetPage implements OnDestroy {
   year;
   month;
 
-  constructor(public navCtrl: NavController, public modalCtrl: ModalController, 
+  constructor(public navCtrl: NavController, 
     public store: Store<AppState>, public actions: ActionsCreatorService) {
     
     this.selectionSubscription = this.store.select(s => s.selection).subscribe(selection => {
@@ -38,14 +38,12 @@ export class BudgetPage implements OnDestroy {
 
   addTransaction(category: string) {
     this.store.dispatch(this.actions.select(this.budgetId, this.year, this.month, category.toLowerCase()));    
-    let modal = this.modalCtrl.create('AddTransactionPage');
-    modal.present();    
+    this.navCtrl.push('AddTransactionPage');
   }
 
   viewTransactionList(category: string) {
     this.store.dispatch(this.actions.select(this.budgetId, this.year, this.month, category.toLowerCase()));
-    let modal = this.modalCtrl.create('TransactionListPage');
-    modal.present();        
+    this.navCtrl.push('TransactionListPage');
   }
 
 }
