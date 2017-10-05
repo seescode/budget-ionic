@@ -5,9 +5,7 @@ import { AppState } from './../../store/reducers/index';
 import { Store } from '@ngrx/store';
 import { Component, OnDestroy } from '@angular/core';
 import { ViewController, NavController } from 'ionic-angular';
-import { IonicPage } from 'ionic-angular';
 
-@IonicPage()
 @Component({
   selector: 'add-transaction',
   templateUrl: 'add-transaction.html'

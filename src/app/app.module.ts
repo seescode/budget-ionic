@@ -1,3 +1,5 @@
+import { TransactionListPage } from './../pages/transaction-list/transaction-list';
+import { AddTransactionPage } from './../pages/add-transaction/add-transaction';
 import { TotalGraphPage } from './../pages/total-graph/total-graph';
 import { MonthGraphPage } from './../pages/month-graph/month-graph';
 import { BudgetPage } from './../pages/budget/budget';
@@ -34,7 +36,9 @@ import { BudgetEffects } from '../store/effects/budget.effects';
     BudgetTabsPage,
     BudgetPage,
     MonthGraphPage,
-    TotalGraphPage
+    TotalGraphPage,
+    AddTransactionPage,
+    TransactionListPage
   ],
   imports: [
     BrowserModule,
@@ -51,7 +55,9 @@ import { BudgetEffects } from '../store/effects/budget.effects';
     MyApp,
     BudgetListPage,
     CreateBudgetPage,
-    BudgetTabsPage
+    BudgetTabsPage,
+    AddTransactionPage,
+    TransactionListPage
   ],
   providers: [
     StatusBar,

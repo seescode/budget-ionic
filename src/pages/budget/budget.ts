@@ -1,3 +1,5 @@
+import { TransactionListPage } from './../transaction-list/transaction-list';
+import { AddTransactionPage } from './../add-transaction/add-transaction';
 import { categoriesForCurrentBudget } from './../../store/selectors/selectors';
 import { ActionsCreatorService } from './../../store/actions/actionsCreatorService';
 import { Actions } from '@ngrx/effects';
@@ -37,12 +39,12 @@ export class BudgetPage implements OnDestroy {
 
   addTransaction(category: string) {
     this.store.dispatch(this.actions.select(this.budgetId, this.year, this.month, category.toLowerCase()));    
-    this.navCtrl.push('AddTransactionPage');
+    this.navCtrl.push(AddTransactionPage);
   }
 
   viewTransactionList(category: string) {
     this.store.dispatch(this.actions.select(this.budgetId, this.year, this.month, category.toLowerCase()));
-    this.navCtrl.push('TransactionListPage');
+    this.navCtrl.push(TransactionListPage);
   }
 
 }
