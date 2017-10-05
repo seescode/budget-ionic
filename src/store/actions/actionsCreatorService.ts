@@ -57,7 +57,7 @@ export class ActionsCreatorService {
       payload: {
         budgetId: budgetId,
         year: this.getToday().getFullYear(),
-        month: this.getToday().getMonth(),
+        month: this.getToday().getMonth() + 1,
         categoryId: categoryId
       }
     };

@@ -4,8 +4,8 @@ import { ActionsCreatorService } from './../../store/actions/actionsCreatorServi
 import { AppState } from './../../store/reducers/index';
 import { Store } from '@ngrx/store';
 import { Component, OnDestroy } from '@angular/core';
-import { ViewController } from 'ionic-angular';
-import { IonicPage, NavParams } from 'ionic-angular';
+import { ViewController, NavController } from 'ionic-angular';
+import { IonicPage } from 'ionic-angular';
 
 @IonicPage()
 @Component({
@@ -26,7 +26,7 @@ export class AddTransactionPage implements OnDestroy {
   month;
 
 
-  constructor(public viewCtrl: ViewController, private navParams: NavParams,
+  constructor(public navCtrl: NavController,
     private store: Store<AppState>, private actions: ActionsCreatorService) {
 
     this.selectionSubscription = this.store.select(s => s.selection).subscribe(selection => {
@@ -44,10 +44,6 @@ export class AddTransactionPage implements OnDestroy {
     this.selectionSubscription.unsubscribe();
   }
 
-  cancel() {
-    this.viewCtrl.dismiss();
-  }
-
   addTransaction() {
     const transaction: Transaction = {
       name: this.selectedSubcategory.toLowerCase(),
@@ -59,7 +55,8 @@ export class AddTransactionPage implements OnDestroy {
       transaction, this.budgetId, this.year, this.month
     ))
 
-    this.viewCtrl.dismiss();
+    // this.viewCtrl.dismiss();
+    this.navCtrl.pop();
   }
 
 }
