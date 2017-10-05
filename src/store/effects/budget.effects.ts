@@ -123,7 +123,6 @@ export class BudgetEffects {
   removeBudget$: Observable<Action> = this.actions$
     .ofType(REMOVE_BUDGET)
     .map(toPayload)
-    // TODO: must get based on budget id
     .withLatestFrom(this.store.select(budgetSelector),
     this.store.select(transactionSelector))
     .mergeMap(([budgetId, budgets, transactions]:

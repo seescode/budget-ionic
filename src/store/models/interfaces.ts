@@ -6,7 +6,7 @@ export interface TotalBudgetInfo {
 
 export interface Transaction {
   name: string;
-  categoryName: string;  
+  categoryName: string;
   id?: string;
   amount: number;
   timestamp?: Date;
@@ -38,4 +38,22 @@ export interface UserSelection {
   month: number;
   year: number;
   categoryId: string;
+}
+
+export interface Category {
+  icon: string;
+  name: string;
+}
+
+export interface Subcategory {
+
+  education: string[];
+  food: string[];
+  fun: string[];
+  home: string[];
+  medical: string[];
+  stuff: string[];
+  transportation: string[];
+  utilities: string[];
+
 }

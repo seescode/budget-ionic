@@ -36,9 +36,6 @@ export class AddTransactionPage implements OnDestroy {
       this.month = selection.month;
     });
 
-    // TODO once categoryMap is in the store, make this reactive
-    //this.categories = this.categoryMap[this.categoryId];
-
     this.subcategories$ = this.store.select(subcategoriesForSelectedCategorySelector);
 
   }

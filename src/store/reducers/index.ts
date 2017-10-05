@@ -1,4 +1,4 @@
-import { Budget, Transaction, Loaded, UserSelection } from './../models/interfaces';
+import { Budget, Transaction, Loaded, UserSelection, Category, Subcategory } from './../models/interfaces';
 // import * as fromRouter from '@ngrx/router-store';
 // import { environment } from '../../environments/environment';
 import {BudgetReducer } from './budget.reducer';
@@ -53,8 +53,8 @@ export interface AppState {
   transaction: Transaction[];
   selection: UserSelection;
   budgetLoaded: Loaded;
-  category: any[]; //TODO: give this a type
-  subcategory: any; //TODO: give this a type 
+  category: Category[]; 
+  subcategory: Subcategory; 
 }
 
 

@@ -16,21 +16,6 @@ export const getCurrentMonth = () => {
   return moment([new Date().getFullYear(), new Date().getMonth()]);
 };
 
-
-// // TODO: delete me
-// export const editCategoryRouteSelector = createSelector(routerSelector,
-//   (routeInfo: any) => {
-
-//     const routes = routeInfo.path.split('/');
-
-//     if (routes[1] !== 'edit-category') {
-//       return null;
-//     }
-
-//     // Category Id
-//     return routes[2];
-//   });
-
 export const categoriesForCurrentBudget = createSelector(selectionSelector, categorySelector,
   transactionSelector, (userSelection, categories, transactions) => {
 
