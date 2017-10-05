@@ -10,20 +10,12 @@ import { Component } from '@angular/core';
 })
 export class BudgetTabsPage {
 
-  tab1: string;
-  tab2: string;
-  tab3: string;
-
   budgetName$: Observable<string>;  
   selectedDate$: Observable<string>;
   
   constructor(public store: Store<AppState>, public actions: ActionsCreatorService) {
     this.budgetName$ = this.store.select(getSelectedBudgetName);
     this.selectedDate$ = this.store.select(getSelectedDate);
-
-    this.tab1 = 'BudgetPage';
-    this.tab2 = 'MonthGraphPage';
-    this.tab3 = 'TotalGraphPage';    
   }
 
   previousMonth() {

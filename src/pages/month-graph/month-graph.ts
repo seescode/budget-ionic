@@ -4,7 +4,6 @@ import { Store } from '@ngrx/store';
 import { Component } from '@angular/core';
 import { NavController, ModalController, IonicPage } from 'ionic-angular';
 
-@IonicPage()
 @Component({
   selector: 'month-graph',
   templateUrl: 'month-graph.html'

@@ -4,7 +4,6 @@ import { NavController, ModalController, IonicPage } from 'ionic-angular';
 import { AppState } from '../../store/reducers/index';
 import { Store } from '@ngrx/store';
 
-@IonicPage()
 @Component({
   selector: 'total-graph',
   templateUrl: 'total-graph.html'

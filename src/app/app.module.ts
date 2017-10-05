@@ -1,3 +1,7 @@
+import { TotalGraphPage } from './../pages/total-graph/total-graph';
+import { MonthGraphPage } from './../pages/month-graph/month-graph';
+import { BudgetPage } from './../pages/budget/budget';
+import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { ActionsCreatorService } from './../store/actions/actionsCreatorService';
 import { BudgetTabsPage } from './../pages/budget-tabs/budget-tabs';
 import { CreateBudgetPage } from './../pages/create-budget/create-budget';
@@ -27,7 +31,10 @@ import { BudgetEffects } from '../store/effects/budget.effects';
     MyApp,
     BudgetListPage,
     CreateBudgetPage,
-    BudgetTabsPage
+    BudgetTabsPage,
+    BudgetPage,
+    MonthGraphPage,
+    TotalGraphPage
   ],
   imports: [
     BrowserModule,
@@ -36,7 +43,8 @@ import { BudgetEffects } from '../store/effects/budget.effects';
     StoreModule.forRoot(reducers, { metaReducers }),
     StoreDevtoolsModule.instrument(),
     EffectsModule.forRoot([BudgetEffects]),
-    DBModule.provideDB(schema)            
+    DBModule.provideDB(schema),
+    NgxChartsModule            
   ],
   bootstrap: [IonicApp],
   entryComponents: [

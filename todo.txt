@@ -21,10 +21,10 @@
 +load data from storedb 
 +be able to delete transactions 
   +persist to storedb
++Convert UI to use the slides instead of tabs.   
 +Get transaction list working
   -write selector that gets based on current month and budget and category 
    
--Convert UI to use the slides instead of tabs. 
 
 -Add back button for transaction list page 
 -Get surplus working 
