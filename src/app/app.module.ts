@@ -27,6 +27,7 @@ import { schema } from '../store/db';
 
 import './app.rxjs-imports';
 import { BudgetEffects } from '../store/effects/budget.effects';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -43,6 +44,7 @@ import { BudgetEffects } from '../store/effects/budget.effects';
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
+    ReactiveFormsModule,
     IonicModule.forRoot(MyApp),
     StoreModule.forRoot(reducers, { metaReducers }),
     StoreDevtoolsModule.instrument(),
