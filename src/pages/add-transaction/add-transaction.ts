@@ -1,21 +1,19 @@
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { subcategoriesForSelectedCategorySelector } from './../../store/selectors/selectors';
 import { Transaction } from './../../store/models/interfaces';
 import { ActionsCreatorService } from './../../store/actions/actionsCreatorService';
 import { AppState } from './../../store/reducers/index';
 import { Store } from '@ngrx/store';
 import { Component, OnDestroy } from '@angular/core';
-import { ViewController, NavController } from 'ionic-angular';
+import { NavController } from 'ionic-angular';
 
 @Component({
   selector: 'add-transaction',
   templateUrl: 'add-transaction.html'
 })
 export class AddTransactionPage implements OnDestroy {
-
+  transaction: FormGroup;
   subcategories$;
-  selectedSubcategory: string;
-  categories = [];
-  transactionAmount: string;
 
   selectionSubscription;
   budgetId;
@@ -26,6 +24,11 @@ export class AddTransactionPage implements OnDestroy {
 
   constructor(public navCtrl: NavController,
     private store: Store<AppState>, private actions: ActionsCreatorService) {
+
+    this.transaction = new FormGroup({
+      selectedSubcategory: new FormControl(null, [Validators.required]),
+      transactionAmount: new FormControl(null, [Validators.required, this.validAmount])
+    })
 
     this.selectionSubscription = this.store.select(s => s.selection).subscribe(selection => {
       this.budgetId = selection.budgetId;
@@ -42,18 +45,28 @@ export class AddTransactionPage implements OnDestroy {
     this.selectionSubscription.unsubscribe();
   }
 
+  validAmount(control: FormControl): { [s: string]: boolean } {
+
+    if (control.value && control.value.match(/^\d+\.?\d?\d?$/)) {
+      return null;
+    }
+
+    return { 'invalidNumber': true };
+  }
+
   addTransaction() {
+    const inputs = this.transaction.value;
+
     const transaction: Transaction = {
-      name: this.selectedSubcategory.toLowerCase(),
+      name: inputs.selectedSubcategory.toLowerCase(),
       categoryName: this.categoryId,
-      amount: parseFloat(this.transactionAmount)
+      amount: parseFloat(inputs.transactionAmount)
     };
 
     this.store.dispatch(this.actions.addTransaction(
       transaction, this.budgetId, this.year, this.month
     ))
 
-    // this.viewCtrl.dismiss();
     this.navCtrl.pop();
   }
 

@@ -6,9 +6,7 @@
   </ion-navbar>
 </ion-header>
 <ion-content padding>
-
   <form [formGroup]="budget" (ngSubmit)="addBudget()">
-
     <ion-list>
       <ion-item>
         <ion-input type="text" formControlName="budgetName" placeholder="Budget Name"></ion-input>
@@ -29,5 +27,4 @@
       <button ion-button [disabled]="budget.invalid" type="submit">Submit</button>
     </ion-list>
   </form>
-
 </ion-content>

@@ -20,16 +20,16 @@
   +write selector that gets based on current month and budget and category 
 +Add back button for transaction list page 
 +Need to label Year and Month graphs 
--add create budget validation so that you can't create stuff when 
++add create budget validation so that you can't create stuff when 
+it's bad   
++add transaction validation so that you can't create stuff when 
 it's bad 
-  -make the begin and end budget date a form group.  Then create a validator 
-  to run on the form group. 
-  -cleanup code within create-budget.  There's a lot of commented code.  
-  -Make sure adding budget works!
-  
--add transaction validation so that you can't create stuff when 
-it's bad 
--prevent adding numbers that are 3+ decimal places
++prevent adding numbers that are 3+ decimal places
+
+-refactor and move out the validations into a separate folder
+-make finger icon on various parts of the UI.
+  -budget list page   
+  -main budget page with list of categories 
 
 -Need to control height and width and alignment for the graphs 
 -make the code fully reactive 

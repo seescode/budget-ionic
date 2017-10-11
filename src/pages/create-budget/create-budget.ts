@@ -2,7 +2,7 @@ import { ActionsCreatorService } from './../../store/actions/actionsCreatorServi
 import { AppState } from './../../store/reducers/index';
 import { Store } from '@ngrx/store';
 import { Component } from '@angular/core';
-import { ViewController, NavController } from 'ionic-angular';
+import { NavController } from 'ionic-angular';
 import * as moment from 'moment';
 import { FormGroup, FormControl, Validators, AbstractControl } from '@angular/forms';
 
@@ -34,17 +34,14 @@ export class CreateBudgetPage {
     const endDate = this.getMomentDate(inputs.budgetDate.budgetEndDate);
 
     this.store.dispatch(this.actions.addBudget(inputs.budgetName, '',
-      parseInt(inputs.budgetAmount), startDate.toDate(), endDate.toDate()));
+      parseFloat(inputs.budgetAmount), startDate.toDate(), endDate.toDate()));
 
     this.navCtrl.pop();
   }
 
   positiveNumber(control: FormControl): { [s: string]: boolean } {
 
-    const parsedNumber = parseInt(control.value);
-
-    if (Number.isInteger(parsedNumber) && parsedNumber > 0 && 
-      control.value.indexOf('.') === -1 && control.value.match(/^\d+$/)) {
+    if (control.value && control.value.match(/^\d+\.?\d?\d?$/)) {
       return null;
     }
 
