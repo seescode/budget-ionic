@@ -26,6 +26,14 @@ it's bad
 it's bad 
 +prevent adding numbers that are 3+ decimal places
 
+
+-Get unit testing working
+  https://leifwells.github.io/2017/08/27/testing-in-ionic-configure-existing-projects-for-testing/
+-Get e2e tests working
+
+
+-as soon as you click a sub category have the focus be on the amount
+
 -refactor and move out the validations into a separate folder
 -make finger icon on various parts of the UI.
   -budget list page   
@@ -36,8 +44,6 @@ it's bad
 -move budget, month-graph, and total-graph into component folders
 
 -Get surplus working 
--Get unit testing working
--Get e2e tests working
 -test in different browsers
 
 
